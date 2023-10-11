@@ -1,0 +1,30 @@
+.btn {
+    width: 200px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    height: 55px;
+    text-align: center;
+    border: none;
+
+    border-radius: 50px;
+    transition: all .4s ease-in-out;
+    background: linear-gradient(to left, #FFF, #FFF);
+    box-shadow: 0 0 13px 0 #636363;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+}
+
+.btn:hover{
+    background: #0e1623;
+    color: #fff;
+    transition: all .4s ease-in-out;
+}
+
+.title h1{
+    background: -webkit-linear-gradient(#243B55, #020915);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

@@ -1,0 +1,160 @@
+body {
+  --color1: #61a4bc;
+  --color2: #1a132f;
+  --aqua3: mediumaquamarine;
+  --color4: #bbeff8ce;
+  --boxshadow: #e6e1e1ce;
+  background-image: url("../public/bg.svg");
+  background-size: cover;
+}
+button.btn-sm.btn.btn-color.mx-5 {
+  color: black;
+}
+.category_post_img img,.feature-img img{
+  width: 100%;
+}
+.all_post .sidebar_widget .single_sidebar_wiget {
+  background-color: #fbf2ee;
+  padding: 30px;
+  margin-bottom: 30px;
+}
+.test {
+  position: absolute;
+  width: 80vw;
+  height: 80vw;
+  background-color: red;
+  top: -20vw;
+  left: -20vw;
+  border-radius: 200px;
+  transform: rotate(45deg);
+}
+
+.navbar-brand {
+  width: 216px;
+  margin: 0px;
+  display: flex;
+  align-items: center;
+
+}
+
+.logo {
+  color: white;
+  transition: linear 1s;
+  font-family: "Oleo Script", cursive;
+}
+
+.logo:hover {
+  background: linear-gradient(90deg,
+      rgb(247, 64, 207) 0%,
+      rgba(11, 113, 172, 0.966) 100%);
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.truncate {
+  width: 95%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+h1.text-color {
+  font-weight: 400;
+}
+
+h1.text-color span {
+  font-weight: 700;
+}
+
+.uk-card.uk-card-default.uk-card-hover.uk-card-body.form-section {
+  width: 100%;
+}
+
+ul.navbar-nav.sp-font.h5 {
+  display: flex;
+  column-gap: 80px;
+}
+
+nav.navbar.navbar-expand-lg.navbar-light.bg-light::after {
+  /* content: ''; */
+  background-image: url(https://png.pngtree.com/background/20211217/original/pngtree-noise-texture-abstract-black-gray-white-background-picture-image_1575985.jpg);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  border-radius: 10px;
+  background-size: inherit;
+  z-index: -1;
+  /* opacity: 0.5; */
+  background-image: url(https://media.istockphoto.com/id/1317698849/vector/space-starry-backdrop-deep-cosmic-wallpaper-wide-cosmos-with-shining-stars-beautiful.jpg?s=612x612&w=0&k=20&c=ZfgqI_ODv-v9PprIZAMVZ8Jyfo5tRWUERsbjzcLWLiE=);
+}
+
+.navbar {
+  background: rgb(0, 212, 255);
+  /* background: linear-gradient(90deg,
+      rgba(0, 212, 255, 1) 11%,
+      rgba(100, 209, 78, 1) 98%); */
+  position: sticky;
+  top: 0px;
+  z-index: 2;
+  width: 98%;
+  margin: 10px auto;
+  border-radius: 10px;
+}
+
+.headline {
+  font-family: "Oleo Script", cursive;
+  color: var(--aqua3);
+  box-shadow: -1.6px 3px 10px var(--color4);
+  border-radius: 0.5em;
+  margin-bottom: 3vh;
+}
+
+.headline:hover {
+  cursor: default;
+}
+
+.card {
+  border-radius: 1em;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1s;
+  box-shadow: -1.6px 3px 10px var(--boxshadow);
+  z-index: 1;
+}
+
+.card:hover {
+  transform: scale(1.01);
+}
+
+.card-img-top {
+  border-radius: 1em 1em 0.1em 0.1em;
+}
+
+.page-button {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.nav-link {
+  color: white !important;
+  transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 1s;
+}
+
+.nav-link:hover {
+  background: linear-gradient(90deg,
+      rgb(247, 64, 207) 0%,
+      rgba(11, 113, 172, 0.966) 100%);
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+
+  transform: scale(1.03);
+}
+
+.navbar-toggler {
+  background-color: var(--color1) !important;
+}
+
+.btn-color {
+  background-color: var(--color1);
+  color: white;
+}

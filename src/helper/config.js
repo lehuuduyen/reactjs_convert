@@ -1,0 +1,1 @@
+export const API_BACKEND = 'http://localhost:8182/wp-json/convert/v1/'
