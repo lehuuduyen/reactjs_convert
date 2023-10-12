@@ -3,6 +3,7 @@ import { FaHome, FaInfo } from "react-icons/fa";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { API_BACKEND } from "../helper/config";
 import axios from "axios";
+import { Image } from "antd";
 
 function Detail() {
   const [data, setData] = useState({});
@@ -29,19 +30,18 @@ function Detail() {
           <div class="col-lg-9 posts-list">
             <div class="single-post">
               <div class="feature-img">
-                <img class="img-fluid" src={data.thumbnail} alt="" />
+                <Image
+                  width={"100%"}
+                  src={data.thumbnail}
+                />
               </div>
               <div class="blog_details">
                 <h1>{data.title}</h1>
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: data.content.replace(
-                      /\r\n\r\n/g,
-                      "<br />"
-                    ),
+                    __html: data.content,
                   }}
-                >
-                </div>
+                ></div>
               </div>
             </div>
           </div>

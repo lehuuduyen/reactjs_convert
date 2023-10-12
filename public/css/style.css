@@ -560,7 +560,10 @@ div {
 
 @media only screen and (min-width: 1600px) {
     .row .col-md-4 {
-        height: 450px;
+        height: 360px;
+    }
+    img.ant-image-img.css-dev-only-do-not-override-pr0fja{
+        height: 500px;
     }
    
 }

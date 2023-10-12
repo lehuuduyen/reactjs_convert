@@ -15,7 +15,7 @@ function App() {
 		<Route element={<MainLayout/>}>
 			<Route index element={<Home/>}/>
 			<Route path="/convert/:id" element={<Home/>}/>
-			<Route path="/detail/:id" element={<Detail/>}/>
+			<Route path="/blog/:id" element={<Detail/>}/>
 
 			<Route
 				path="/blog"

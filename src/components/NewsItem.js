@@ -9,7 +9,7 @@ export class NewsItem extends Component {
   
   render() {
     return (
-      <Link style={{ textDecoration: "none" }} to={`/detail/${(this.props.slug)?this.props.slug:this.props.title}`}>
+      <Link style={{ textDecoration: "none" }} to={`/blog/${(this.props.slug)?this.props.slug:this.props.title}`}>
         <Card
           hoverable
           style={{ width: "100%", height: "100%" }}
