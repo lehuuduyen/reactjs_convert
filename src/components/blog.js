@@ -66,12 +66,12 @@ function Blog(states) {
                             ? items.short_description.slice(0, 85)
                             : "") + "..."
                         }
-                        imageURL={
-                          items.thumbnail
-                            ? items.thumbnail
+                        urlToImage={
+                          items.urlToImage
+                            ? items.urlToImage
                             : "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/120px-No_image_available.svg.png"
                         }
-                        newsURL={items.thumbnail}
+                        newsURL={items.urlToImage}
                       />
                     </Content>
                   </Layout>

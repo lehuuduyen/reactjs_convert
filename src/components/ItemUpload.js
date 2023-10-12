@@ -9,6 +9,7 @@ import {
 } from "@ant-design/icons";
 import "./ConvertFile.css";
 import axios from "axios";
+import { API_BACKEND } from "../helper/config";
 
 const getBase64 = (file) =>
 	new Promise((resolve, reject) => {
@@ -107,7 +108,7 @@ function ItemUpload(props) {
 			}
 		}
 
-		axios.post('http://convert.getlinktraffic.space/convert.php', formData, config).then((res) => {
+		axios.post(API_BACKEND+'format-file', formData, config).then((res) => {
 			const {data, message, error} = res.data;
 			if (res.data.success) {
 				setFileConverted(JSON.parse(data))

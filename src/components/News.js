@@ -4,6 +4,8 @@ import NewsItem from "./NewsItem";
 import PropTypes from "prop-types";
 import { Layout } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
+import axios from "axios";
+import { API_BACKEND } from "../helper/config";
 export class News extends Component {
   constructor(props) {
     super(props);
@@ -16,6 +18,18 @@ export class News extends Component {
     this.handleNext = this.handleNext.bind(this);
     this.handlePrevious = this.handlePrevious.bind(this);
   }
+  async callNews(url) {
+    axios.post(API_BACKEND+'format-file', {'url': url}).then((res) => {
+			const {data, message, error} = res.data;
+			if (res.data.success) {
+        console.log(res.data);
+			} else {
+				
+			}
+		}).catch((err) => {
+		
+		});
+  }
   // function to handle next and previous.
   async handleNext() {
     window.scrollTo(0, 0); //scrolls to top on rendering.
@@ -26,6 +40,7 @@ export class News extends Component {
     }&apiKey=f59178ab70df48bc83797911eebc20d9&page=${
       this.state.pg + 1
     }&pageSize=${this.props.pageSize}`;
+    this.callNews(url)
     this.setState({ loading: true });
     let data = await fetch(url);
     let parsedData = await data.json();
