@@ -32,7 +32,7 @@ function Detail() {
               <div class="feature-img">
                 <Image
                   width={"100%"}
-                  src={data.thumbnail}
+                  src={data.urlToImage}
                 />
               </div>
               <div class="blog_details">

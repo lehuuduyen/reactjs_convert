@@ -13,7 +13,7 @@ export class NewsItem extends Component {
         <Card
           hoverable
           style={{ width: "100%", height: "100%" }}
-          cover={<img alt="example" src={this.props.imageURL} loading={true} />}
+          cover={<img alt="example" src={this.props.urlToImage} loading={true} />}
         >
           <div class="ant-card-meta">
             <div class="ant-card-meta-detail">
