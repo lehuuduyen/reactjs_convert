@@ -1,19 +1,21 @@
 import "./App.css";
 // f59178ab70df48bc83797911eebc20d9
 import React from "react";
-import News from "./components/News";
 //react-router
 import {Route, Routes as ReactRoutes} from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Blog from "./components/blog";
 import MainLayout from "./layout/MainLayout";
 import Detail from "./components/Detail";
+import Weather from "./components/Weather";
 
 function App() {
 	return (
 		<ReactRoutes>
 		<Route element={<MainLayout/>}>
 			<Route index element={<Home/>}/>
+			<Route path="/convert/" element={<Home/>}/>
+			<Route path="/weather/" element={<Weather/>}/>
 			<Route path="/convert/:id" element={<Home/>}/>
 			<Route path="/blog/:id" element={<Detail/>}/>
 
@@ -21,24 +23,14 @@ function App() {
 				path="/blog"
 				element={
 					<Blog
-						key={"business"}
+						key={"Blog"}
 						pageSize={9}
 						country="in"
-						category="business"
+						category="Blog"
 					/>
 				}
 			></Route>
-			<Route
-				path="/news"
-				element={
-					<News
-						key={"business"}
-						pageSize={9}
-						country="in"
-						category="business"
-					/>
-				}
-			></Route>
+			
 			{/* <Route exact path="/Science">
               <News
                 key={"science"}

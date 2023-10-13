@@ -9,8 +9,8 @@ const {Header} = Layout;
 
 const MENU = [
 	{label: 'Blog', to: '/blog'},
-	{label: 'Tin tức nước ngoài', to: '/news'},
-	{label: 'Thời tiết', to: '/health'},
+	// {label: 'Tin tức nước ngoài', to: '/news'},
+	{label: 'Thời tiết', to: '/weather'},
 	// {label: 'Khoa Học', to: '/science'},
 	// {label: 'Công Nghệ', to: '/tech'},
 ]
@@ -38,7 +38,7 @@ function HeaderCustom() {
 		<Layout>
 			<Row>
 				<Col xs={18} lg={4} className="header__logo">
-					<Link to=""><h1>Newsmonk</h1></Link>
+					<Link to=""><h1>TinyPNG</h1></Link>
 				</Col>
 				<Col xs={0} lg={20} className="header__right">
 					<Row>

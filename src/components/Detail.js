@@ -3,7 +3,7 @@ import { FaHome, FaInfo } from "react-icons/fa";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { API_BACKEND } from "../helper/config";
 import axios from "axios";
-import { Image } from "antd";
+import { Col, Image, Row } from "antd";
 
 function Detail() {
   const [data, setData] = useState({});
@@ -24,8 +24,11 @@ function Detail() {
       });
   }, []);
   return (
-    <section class="blog_area single-post-area all_post section_padding">
-      <div class="container">
+    <Row>
+   <Col className="gutter-row" span={3}>
+        </Col>
+    <Col class="blog_area single-post-area all_post section_padding" span={18}>
+      <div class="">
         <div class="row">
           <div class="col-lg-9 posts-list">
             <div class="single-post">
@@ -104,7 +107,10 @@ function Detail() {
           </div>
         </div>
       </div>
-    </section>
+    </Col>
+    <Col className="gutter-row" span={3}>
+        </Col>
+    </Row>
   );
 }
 

@@ -1,28 +1,33 @@
 import React, { Component, useEffect, useState } from "react";
 import Loading from "./Loading";
-import NewsItem from "./NewsItem";
 import PropTypes from "prop-types";
-import { Layout } from "antd";
+import { Col, Layout, Row } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
 import { API_BACKEND } from "../helper/config";
 import axios from "axios";
+import BlogsItem from "./BlogsItem";
 
 function Blog(states) {
-	const [listData, setListData] = useState([]);
-	const [loading, setLoading] = useState(false);
-	const [state, setState] = useState([]);
-
+  const [listData, setListData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [state, setState] = useState([]);
 
   useEffect(() => {
     const url = API_BACKEND + `post`;
-    setState(states)
-    axios
-      .get(url)
+    setState(states);
+    setLoading(true)
+    axios(url, {
+      mode: "no-cors",
+      withCredentials: true,
+      credentials: "same-origin",
+    })
       .then((res) => {
         const { data, message, error } = res.data;
-       if(!error){
-        setListData(data)
-       }
+        if (!error) {
+          setListData(data);
+          setLoading(false)
+
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -32,13 +37,11 @@ function Blog(states) {
 
   //render
   return (
-    <>
-      {/* headline */}
-      <div className="container my-3">
+    <Row>
+      <Col className="gutter-row" span={3}></Col>
+      <Col className=" gutter-row" span={18}>
         <div className="text-center headline">
-          <h1 style={{ color: "red", fontSize: 35 }}>
-           {state.category}
-          </h1>
+          <h1 style={{ color: "red", fontSize: 35 }}>{state.category}</h1>
         </div>
         {/* spinner */}
         {loading && <Loading />}
@@ -54,13 +57,11 @@ function Blog(states) {
                 >
                   <Layout>
                     <Content>
-                      <NewsItem 
+                      <BlogsItem
                         title={
                           (items.title ? items.title.slice(0, 45) : "") + ".."
                         }
-                        slug={
-                          (items.slug)
-                        }
+                        slug={items.slug}
                         description={
                           (items.short_description
                             ? items.short_description.slice(0, 85)
@@ -79,9 +80,9 @@ function Blog(states) {
               );
             })}
         </div>
-      </div>
-      
-    </>
+      </Col>
+      <Col className="gutter-row" span={3}></Col>
+    </Row>
   );
 }
 

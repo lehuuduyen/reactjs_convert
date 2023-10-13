@@ -541,7 +541,7 @@ div {
 }
 
 .row .col-md-4 {
-    height: 350px;
+    height: 100%;
 }
 
 .row .col-md-4 img {

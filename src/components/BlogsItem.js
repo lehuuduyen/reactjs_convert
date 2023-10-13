@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function onclick(params) {
     console.log(params)
 }
-export class NewsItem extends Component {
+export class BlogsItem extends Component {
   
   render() {
     return (
@@ -18,7 +18,7 @@ export class NewsItem extends Component {
           <div class="ant-card-meta">
             <div class="ant-card-meta-detail">
               <div class="ant-card-meta-title">
-                <h2>{this.props.title}</h2>
+                <h2 style={{ whiteSpace:"unset" }}>{this.props.title}</h2>
               </div>
               <div
                 class="ant-card-meta-description"
@@ -34,4 +34,4 @@ export class NewsItem extends Component {
   }
 }
 
-export default NewsItem;
+export default BlogsItem;
