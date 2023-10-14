@@ -72,22 +72,43 @@ function ItemUpload(props) {
 	}
 
 	const handleCancel = () => setPreviewOpen(false);
-
+	function downloadURI(uri, name) {
+		var link = document.createElement("a");
+		link.download = name;
+		link.href = uri;
+		link.target = "_blank";
+		document.body.appendChild(link);
+		link.click();
+		document.body.removeChild(link);
+	  }
 	const handleDownloadClick = () => {
-		const xhr = new XMLHttpRequest();
-		xhr.open("GET", downloadLink, true);
-		xhr.responseType = "blob";
-		xhr.onload = function () {
-			const urlCreator = window.URL || window.webkitURL;
-			const imageUrl = urlCreator.createObjectURL(this.response);
-			const tag = document.createElement("a");
-			tag.href = imageUrl;
-			tag.download = downloadLink.lastIndexOf("/") + 1;
-			document.body.appendChild(tag);
-			tag.click();
-			document.body.removeChild(tag);
-		};
-		xhr.send();
+		let name =downloadLink.lastIndexOf("/") + 1;
+		downloadURI(downloadLink,name)
+		// axios('http://convertadmin.getlinktraffic.space/wp-content/uploads/2023/10/a1-16970409914061690359475.webp', {
+		// 	mode: "no-cors",
+		// 	withCredentials: true,
+		// 	credentials: "same-origin",
+		//   })
+		// 	.then((res) => {
+		// 	  const { data, message, error } = res.data;
+		// 	})
+		// 	.catch((err) => {
+		// 	  console.log(err);
+		// 	});
+		// const xhr = new XMLHttpRequest();
+		// xhr.open("GET", downloadLink, true);
+		// xhr.responseType = "blob";
+		// xhr.onload = function () {
+		// 	const urlCreator = window.URL || window.webkitURL;
+		// 	const imageUrl = urlCreator.createObjectURL(this.response);
+		// 	const tag = document.createElement("a");
+		// 	tag.href = imageUrl;
+		// 	tag.download = downloadLink.lastIndexOf("/") + 1;
+		// 	document.body.appendChild(tag);
+		// 	tag.click();
+		// 	document.body.removeChild(tag);
+		// };
+		// xhr.send();
 	};
 
 	const onRetryFile = () => {
@@ -107,6 +128,8 @@ function ItemUpload(props) {
 				setPercent(progressEvent.progress * 100)
 			}
 		}
+
+		
 
 		axios.post(API_BACKEND+'format-file', formData, config).then((res) => {
 			const {data, message, error} = res.data;
