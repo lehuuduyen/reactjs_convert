@@ -56,16 +56,7 @@ function ItemUpload(props) {
 	}, [file])
 
 
-	const handlePreview = async (file) => {
-		if (!file.url && !file.preview) {
-			file.preview = await getBase64(file.originFileObj);
-		}
-		setPreviewImage(file.url || file.preview);
-		setPreviewOpen(true);
-		setPreviewTitle(
-			file.name || file.url.substring(file.url.lastIndexOf("/") + 1)
-		);
-	};
+	
 
 	const onChangeType = (value) => {
 		setSelectedOption(value);
@@ -134,6 +125,9 @@ function ItemUpload(props) {
 		axios.post(API_BACKEND+'format-file', formData, config).then((res) => {
 			const {data, message, error} = res.data;
 			if (res.data.success) {
+				console.log('====================================');
+				console.log(JSON.parse(data));
+				console.log('====================================');
 				setFileConverted(JSON.parse(data))
 				setDownloadLink(message)
 				setStatusUpload(2);
@@ -190,12 +184,17 @@ function ItemUpload(props) {
 								<Col>
 									<Tag color="red">
 										<b>{Math.round(file.size / 1024)}KB</b>
-									</Tag>&nbsp;<ArrowRightOutlined/>&nbsp;
+									</Tag>&nbsp;<ArrowRightOutlined/>&nbsp;&nbsp;
 									<Tag color="success">
 										<Spin spinning={statusUpload === 1}>
 											<b>{fileConverted.newSize || '... KB'}</b>
 										</Spin>
-									</Tag>
+									</Tag>&nbsp;&nbsp;
+									{ (fileConverted.percent) ? <Tag color="blue">
+										<b st>{fileConverted.percent}</b>
+									</Tag> : "" }
+									
+									
 								</Col>
 							</Row>}
 						</Col>
