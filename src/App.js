@@ -8,6 +8,7 @@ import Blog from "./components/blog";
 import MainLayout from "./layout/MainLayout";
 import Detail from "./components/Detail";
 import Weather from "./components/Weather";
+import News from "./components/News";
 
 function App() {
 	return (
@@ -27,6 +28,17 @@ function App() {
 						pageSize={9}
 						country="in"
 						category="Blog"
+					/>
+				}
+			></Route>
+      <Route
+				path="/news"
+				element={
+					<News
+						key={"Tin mới nhất"}
+						pageSize={9}
+						country="in"
+						category="Tin mới nhất"
 					/>
 				}
 			></Route>

@@ -10,7 +10,7 @@ const {Header} = Layout;
 const MENU = [
 	{label: 'Blog', to: '/blog'},
 	// {label: 'Tin tức nước ngoài', to: '/news'},
-	{label: 'Thời tiết', to: '/weather'},
+	{label: 'Tin tức', to: '/news'},
 	// {label: 'Khoa Học', to: '/science'},
 	// {label: 'Công Nghệ', to: '/tech'},
 ]
