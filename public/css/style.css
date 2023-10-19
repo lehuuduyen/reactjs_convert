@@ -562,8 +562,19 @@ div {
     .row .col-md-4 {
         height: 360px;
     }
-    img.ant-image-img.css-dev-only-do-not-override-pr0fja{
-        height: 500px;
+}
+@media only screen and (min-width: 1023px) {
+    #scrollableDiv {
+        padding: 0 15% !important;
     }
-   
+}
+@media only screen and (max-width: 1023px) {
+    #scrollableDiv {
+        padding: 0 10% !important;
+    }
+}
+@media only screen and (max-width: 600px) {
+    #scrollableDiv {
+        padding: 0 5% !important;
+    }
 }

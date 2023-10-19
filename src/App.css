@@ -181,7 +181,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light::after {
 }
 
 .list-news-subfolder .item-news-common .thumb-art {
-  width: 220px;
+  width: 260px;
   margin-right: 0;
   float: right;
   margin-left: 40px
@@ -192,7 +192,9 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light::after {
   line-height: 140%;
   color: #4f4f4f !important
 }
-
+.infinite-scroll-component {
+  overflow-x: hidden !important;
+}
 .list-news-subfolder .item-news-common.off-thumb .title-news,
 .list-news-subfolder .item-news-common.off-thumb .description {
   max-width: 600px
@@ -222,16 +224,14 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light::after {
   padding-left: 20px
 }
 
-.wrapper-24h .list-news-subfolder {
-  border-left: 1px solid #e5e5e5
-}
 
 .wrapper-24h .list-news-subfolder .item-news-common {
   padding-left: 30px;
   position: relative;
   border-top: none;
   margin-top: 20px;
-  padding-top: 20px
+  padding-top: 20px;
+  width: 100%;
 }
 
 .wrapper-24h .list-news-subfolder .item-news-common:first-of-type {
@@ -244,6 +244,11 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light::after {
   font-weight: 700
 }
 
+.wrapper-24h .ant-list-items{
+  transform: translateX(12px);
+  border-left: 1px solid #e5e5e5;
+}
+
 .wrapper-24h .time-count {
   font-size: 14px;
   width: 100%;
@@ -251,7 +256,9 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light::after {
   position: relative;
   color: #757575
 }
-
+.rc-virtual-list-holder {
+  overflow-y: visible!important;
+}
 .wrapper-24h .time-count:before {
   content: "";
   width: 9px;
