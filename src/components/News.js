@@ -11,7 +11,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 function News(states) {
   const [listData, setListData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [currPage, setCurrPage] = useState(0);
+  const [currPage, setCurrPage] = useState(1);
 
   const appendData = (e) => {
     setCurrPage(currPage + 1)
@@ -66,8 +66,8 @@ function News(states) {
                 <InfiniteScroll
                   dataLength={listData.length}
                   next={(e)=>appendData(e)}
-                  hasMore={listData.length < 20}
-                  // hasMore={true}
+                  // hasMore={listData.length < 20}
+                  hasMore={true}
                   loader={
                     <Skeleton
                       avatar
