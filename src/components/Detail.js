@@ -76,7 +76,7 @@ function Detail() {
                         <>
                           <div class="single_catagory_post post_2 ">
                             <div class="category_post_img">
-                              <Link to={`/blog/${item.slug}`}>
+                              <a href={`/blog/${item.slug}`}>
                                 <img
                                   src={
                                     item.urlToImage
@@ -85,16 +85,18 @@ function Detail() {
                                   }
                                   alt=""
                                 />
-                              </Link>
+                              </a>
                             </div>
                             <div class="post_text_1 pr_30">
-                              <Link to={`/blog/${item.slug}`}>
-                                <h3>{item.title}</h3>
-                              </Link>
+                              <a href={`/blog/${item.slug}`}>
+                                <h3 dangerouslySetInnerHTML={{
+                      __html: data.title,
+                    }}></h3>
+                              </a>
                               <p>
-                                <Link to={`/blog/${item.slug}`}  className="a_un_underline">
+                                <a href={`/blog/${item.slug}`} className="a_un_underline">
                                   <span> {item.date}</span>
-                                </Link>
+                                </a>
                               </p>
                             </div>
                           </div>

@@ -3,11 +3,13 @@ import { FaHome, FaInfo } from "react-icons/fa";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { API_BACKEND, IMAGE_EMPTY } from "../helper/config";
 import axios from "axios";
-import { Col, Image, Row } from "antd";
+import { Col, Image, Row, message } from "antd";
 
 function DetailNews() {
+  const navigate = useNavigate()
   const [data, setData] = useState({});
   const [dataPopular, setDataPopular] = useState([]);
+  const [messageApi, contextHolder] = message.useMessage();
 
   useEffect(() => {
     const slug = window.location.pathname.split("/")[2];
@@ -21,7 +23,11 @@ function DetailNews() {
         }
       })
       .catch((err) => {
-        console.log(err);
+        messageApi.open({
+          type: "error",
+          content: `Bài viết không tồn tại`,
+        });
+        navigate('/news')
       });
   }, []);
   useEffect(() => {
@@ -40,6 +46,8 @@ function DetailNews() {
   }, []);
   return (
     <Row>
+      {contextHolder}
+
       <Col className="gutter-row" span={3}></Col>
       <Col
         class="blog_area single-post-area all_post section_padding"
@@ -77,10 +85,7 @@ function DetailNews() {
                         <>
                           <div class="single_catagory_post post_2 ">
                             <div class="category_post_img">
-                              <Link
-                                to={`/news/${item.slug}`}
-                               
-                              >
+                              <a href={`/news/${item.slug}`}>
                                 <img
                                   src={
                                     item.urlToImage
@@ -89,22 +94,21 @@ function DetailNews() {
                                   }
                                   alt=""
                                 />
-                              </Link>
+                              </a>
                             </div>
                             <br />
                             <div class="post_text_1 pr_30">
-                              <Link
-                                to={`/news/${item.slug}`}
-                                
-                              >
-                                <h3>{item.title}</h3>
-                              </Link>
-                              <Link
-                                to={`/news/${item.slug}`}
+                              <a href={`/news/${item.slug}`}>
+                                <h3 dangerouslySetInnerHTML={{
+                      __html: data.title,
+                    }}></h3>
+                              </a>
+                              <a
+                                href={`/news/${item.slug}`}
                                 className="a_un_underline"
                               >
                                 <span> {item.date}</span>
-                              </Link>
+                              </a>
                             </div>
                           </div>
                           <hr></hr>
