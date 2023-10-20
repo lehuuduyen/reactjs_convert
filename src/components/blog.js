@@ -59,7 +59,7 @@ function Blog(states) {
                     <Content>
                       <BlogsItem
                         title={
-                          (items.title ? items.title.slice(0, 45) : "") + ".."
+                          (items.title ? items.title : "") + ".."
                         }
                         slug={items.slug}
                         description={
