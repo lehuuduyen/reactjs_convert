@@ -3,7 +3,7 @@ import Loading from "./Loading";
 import PropTypes from "prop-types";
 import { Col, Layout, Row } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
-import { API_BACKEND } from "../helper/config";
+import { API_BACKEND, IMAGE_EMPTY } from "../helper/config";
 import axios from "axios";
 import BlogsItem from "./BlogsItem";
 
@@ -70,7 +70,7 @@ function Blog(states) {
                         urlToImage={
                           items.urlToImage
                             ? items.urlToImage
-                            : "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/120px-No_image_available.svg.png"
+                            : IMAGE_EMPTY
                         }
                         newsURL={items.urlToImage}
                       />

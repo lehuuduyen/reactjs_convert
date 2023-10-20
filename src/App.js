@@ -9,6 +9,7 @@ import MainLayout from "./layout/MainLayout";
 import Detail from "./components/Detail";
 import Weather from "./components/Weather";
 import News from "./components/News";
+import DetailNews from "./components/DetailNews";
 
 function App() {
 	return (
@@ -19,6 +20,7 @@ function App() {
 			<Route path="/weather/" element={<Weather/>}/>
 			<Route path="/convert/:id" element={<Home/>}/>
 			<Route path="/blog/:id" element={<Detail/>}/>
+			<Route path="/news/:id" element={<DetailNews/>}/>
 
 			<Route
 				path="/blog"

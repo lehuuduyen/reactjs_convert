@@ -3,7 +3,7 @@ import Loading from "./Loading";
 import PropTypes from "prop-types";
 import { Col, Image, Row, Avatar, Divider, List, Skeleton } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
-import { API_BACKEND } from "../helper/config";
+import { API_BACKEND, IMAGE_EMPTY } from "../helper/config";
 import axios from "axios";
 
 import { Link } from "react-router-dom";
@@ -12,9 +12,10 @@ function News(states) {
   const [listData, setListData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currPage, setCurrPage] = useState(1);
+  const [total, setTotal] = useState(0);
 
   const appendData = (e) => {
-    setCurrPage(currPage + 1)
+    setCurrPage(currPage + 1);
     const url = API_BACKEND + `call-news?page=${currPage}`;
     axios(url, {
       mode: "no-cors",
@@ -22,9 +23,10 @@ function News(states) {
       credentials: "same-origin",
     })
       .then((res) => {
-        const { data, message, error } = res.data;
+        const { data, total,message, error } = res.data;
         if (!error) {
           setListData([...listData, ...data]);
+          setTotal(total)
           setLoading(false);
 
           // message.success(`${data.length} more items loaded!`);
@@ -65,9 +67,8 @@ function News(states) {
               >
                 <InfiniteScroll
                   dataLength={listData.length}
-                  next={(e)=>appendData(e)}
-                  // hasMore={listData.length < 20}
-                  hasMore={true}
+                  next={(e) => appendData(e)}
+                  hasMore={listData.length < total}
                   loader={
                     <Skeleton
                       avatar
@@ -85,7 +86,7 @@ function News(states) {
                   <List
                     dataSource={listData}
                     renderItem={(items) => (
-                      <List.Item key={items.slug} >
+                      <List.Item key={items.slug}>
                         <article
                           key={items.slug}
                           className="item-news item-news-common"
@@ -94,7 +95,7 @@ function News(states) {
                           <span className="time-count"></span>
                           <div className="thumb-art">
                             <Image
-                              fallback="https://e7.pngegg.com/pngimages/829/733/png-clipart-logo-brand-product-trademark-font-not-found-logo-brand.png"
+                              fallback={IMAGE_EMPTY}
                               itemprop="contentUrl"
                               style={{
                                 transform: "translateX(-50%)",
@@ -102,7 +103,7 @@ function News(states) {
                               }}
                               loading="lazy"
                               intrinsicsize="220x132"
-                              alt="Israel lắp lồng chống UAV trên nóc xe tăng hiện đại nhất"
+                              alt={items.title}
                               className="lazy lazied thumb "
                               src={items.urlToImage}
                               data-ll-status="loaded"
@@ -113,7 +114,7 @@ function News(states) {
                               data-medium="Item-1"
                               data-thumb="1"
                               to={`/news/${items.slug}`}
-                              title="Israel lắp lồng chống UAV trên nóc xe tăng hiện đại nhất"
+                              title={items.title}
                               data-itm-source="#vn_source=TinNong&amp;vn_campaign=Stream&amp;vn_medium=Item-1&amp;vn_term=Desktop&amp;vn_thumb=1"
                               data-itm-added="1"
                             >
@@ -125,26 +126,39 @@ function News(states) {
                             </Link>
                           </h3>
                           <p className="description">
-                            <a
+                            <Link
+                              className="a_un_underline"
                               data-medium="Item-1"
                               data-thumb="1"
-                              href="https://vnexpress.net/israel-lap-long-chong-uav-tren-noc-xe-tang-hien-dai-nhat-4665589.html"
-                              title="Israel lắp lồng chống UAV trên nóc xe tăng hiện đại nhất"
+                              to={`/news/${items.slug}`}
+                              title={items.title}
                               data-itm-source="#vn_source=TinNong&amp;vn_campaign=Stream&amp;vn_medium=Item-1&amp;vn_term=Desktop&amp;vn_thumb=1"
                               data-itm-added="1"
                             >
-                              {items.content}
-                            </a>
+                              <span>{items.content}</span>
+                            </Link>
                           </p>
-                          <p className="meta-news">
-                            <span className="time-public">
-                              <span
-                                datetime="2023-10-17 14:06:06"
-                                timeago-id="240"
-                              >
-                                {items.date}
-                              </span>
-                            </span>
+                          <p className="description">
+                            <Link
+                              className="a_un_underline"
+                              data-medium="Item-1"
+                              data-thumb="1"
+                              to={`/news/${items.slug}`}
+                              title={items.title}
+                              data-itm-source="#vn_source=TinNong&amp;vn_campaign=Stream&amp;vn_medium=Item-1&amp;vn_term=Desktop&amp;vn_thumb=1"
+                              data-itm-added="1"
+                            >
+                              <p className="meta-news">
+                                <span className="time-public">
+                                  <span
+                                    datetime="2023-10-17 14:06:06"
+                                    timeago-id="240"
+                                  >
+                                    {items.date}
+                                  </span>
+                                </span>
+                              </p>
+                            </Link>
                           </p>
                         </article>
                       </List.Item>
