@@ -76,7 +76,7 @@ function Detail() {
                         <>
                           <div class="single_catagory_post post_2 ">
                             <div class="category_post_img">
-                              <a href={`/blog/${item.slug}`}>
+                              <Link to={`/blog/${item.slug}`}>
                                 <img
                                   src={
                                     item.urlToImage
@@ -85,16 +85,16 @@ function Detail() {
                                   }
                                   alt=""
                                 />
-                              </a>
+                              </Link>
                             </div>
                             <div class="post_text_1 pr_30">
-                              <a href={`/blog/${item.slug}`}>
+                              <Link to={`/blog/${item.slug}`}>
                                 <h3>{item.title}</h3>
-                              </a>
+                              </Link>
                               <p>
-                                <a href={`/blog/${item.slug}`}>
+                                <Link to={`/blog/${item.slug}`}  className="a_un_underline">
                                   <span> {item.date}</span>
-                                </a>
+                                </Link>
                               </p>
                             </div>
                           </div>

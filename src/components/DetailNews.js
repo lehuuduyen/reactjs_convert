@@ -49,14 +49,13 @@ function DetailNews() {
           <div class="row">
             <div class="col-lg-8 posts-list" style={{ marginBottom: "50px" }}>
               <div class="single-post">
-               
                 <div class="blog_details">
-                  <h1 dangerouslySetInnerHTML={{
+                  <h1
+                    dangerouslySetInnerHTML={{
                       __html: data.title,
-                    }}></h1>
-                    <span>
-                      {data.date}
-                    </span>
+                    }}
+                  ></h1>
+                  <span>{data.date}</span>
                   <div
                     dangerouslySetInnerHTML={{
                       __html: data.content,
@@ -65,9 +64,9 @@ function DetailNews() {
                 </div>
               </div>
             </div>
-           
+
             <div class="col-lg-3">
-              <div class="sidebar_widget" style={{ paddingLeft:20 }}>
+              <div class="sidebar_widget" style={{ paddingLeft: 20 }}>
                 <div class="single_sidebar_wiget">
                   <div class="sidebar_tittle">
                     <h2 style={{ color: "orange" }}>Tin nổi bật</h2>
@@ -78,7 +77,10 @@ function DetailNews() {
                         <>
                           <div class="single_catagory_post post_2 ">
                             <div class="category_post_img">
-                              <a href={`/news/${item.slug}`}>
+                              <Link
+                                to={`/news/${item.slug}`}
+                               
+                              >
                                 <img
                                   src={
                                     item.urlToImage
@@ -87,16 +89,22 @@ function DetailNews() {
                                   }
                                   alt=""
                                 />
-                              </a>
+                              </Link>
                             </div>
-                            <br/>
+                            <br />
                             <div class="post_text_1 pr_30">
-                              <a href={`/news/${item.slug}`}>
+                              <Link
+                                to={`/news/${item.slug}`}
+                                
+                              >
                                 <h3>{item.title}</h3>
-                              </a>
-                                <a href={`/news/${item.slug}`}>
-                                  <span> {item.date}</span>
-                                </a>
+                              </Link>
+                              <Link
+                                to={`/news/${item.slug}`}
+                                className="a_un_underline"
+                              >
+                                <span> {item.date}</span>
+                              </Link>
                             </div>
                           </div>
                           <hr></hr>
