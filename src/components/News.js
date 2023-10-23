@@ -12,9 +12,11 @@ function News() {
   const [currPage, setCurrPage] = useState(1);
   const [total, setTotal] = useState(0);
 
-  const appendData = (e) => {
+  const appendData = () => {
     setCurrPage(currPage + 1);
     const url = API_BACKEND + `call-news?page=${currPage}`;
+     setLoading(currPage === 1);
+
     axios(url, {
       mode: "no-cors",
       withCredentials: true,
@@ -53,11 +55,11 @@ function News() {
             data-campaign="Stream"
           >
             {loading && <Loading />}
-            {listData && (
+            {listData && !loading && (
               <div
                 id="scrollableDiv"
                 style={{
-                  height: "90vh",
+                  height: "calc(100vh - 105px)",
                   overflowY: "auto",
                   width: "100vw",
                   // border: "1px solid rgba(140, 140, 140, 0.35)",

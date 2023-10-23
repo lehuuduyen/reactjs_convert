@@ -580,6 +580,36 @@ div {
     overflow: hidden;
 }
 
+.row .ant-card-cover img {
+    position: absolute;   
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+
+.row .ant-card-body{
+    padding: 15px;
+    min-height: 155px;
+
+}
+.row .ant-card-body .ant-card-meta-title{
+    white-space: unset;
+}
+.row .ant-card-body .ant-card-meta-title h3{
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;  
+}
+
+.row .ant-card-body .ant-card-meta-description{
+    min-height: 68px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+}
+
 @media only screen and (min-width: 1600px) {
     .row .col-md-4 {
         height: 360px;

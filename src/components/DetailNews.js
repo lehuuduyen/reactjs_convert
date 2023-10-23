@@ -1,5 +1,5 @@
 import React, {  useEffect, useState } from "react";
-import {  useNavigate } from "react-router-dom";
+import {  Link, useNavigate } from "react-router-dom";
 import { API_BACKEND, IMAGE_EMPTY } from "../helper/config";
 import axios from "axios";
 import { Col, Row, message } from "antd";
@@ -28,7 +28,7 @@ function DetailNews() {
         });
         navigate('/news')
       });
-  }, []);
+  }, [navigate]);
   useEffect(() => {
     const urlPopular = API_BACKEND + `call-news-popular`;
     axios
@@ -49,14 +49,14 @@ function DetailNews() {
 
       <Col className="gutter-row" span={3}></Col>
       <Col
-        class="blog_area single-post-area all_post section_padding"
+        className="blog_area single-post-area all_post section_padding"
         span={18}
       >
-        <div class="">
-          <div class="row">
-            <div class="col-lg-8 posts-list" style={{ marginBottom: "50px" }}>
-              <div class="single-post">
-                <div class="blog_details">
+        <div className="">
+          <Row className="row">
+            <Col lg={16} className="posts-list" style={{ marginBottom: "50px" }}>
+              <div className="single-post">
+                <div className="blog_details">
                   <h1
                     dangerouslySetInnerHTML={{
                       __html: data.title,
@@ -70,21 +70,21 @@ function DetailNews() {
                   ></div>
                 </div>
               </div>
-            </div>
+            </Col>
 
-            <div class="col-lg-3">
-              <div class="sidebar_widget" style={{ paddingLeft: 20 }}>
-                <div class="single_sidebar_wiget">
-                  <div class="sidebar_tittle">
+            <Col lg={6}>
+              <div className="sidebar_widget" style={{ paddingLeft: 20 }}>
+                <div className="single_sidebar_wiget">
+                  <div className="sidebar_tittle">
                     <h2 style={{ color: "orange" }}>Tin nổi bật</h2>
                   </div>
                   {dataPopular &&
                     dataPopular.map((item, id) => {
                       return (
                         <>
-                          <div class="single_catagory_post post_2 ">
-                            <div class="category_post_img">
-                              <a href={`/news/${item.slug}`}>
+                          <div className="single_catagory_post post_2 ">
+                            <div className="category_post_img">
+                              <Link to={`/news/${item.slug}`}>
                                 <img
                                   src={
                                     item.urlToImage
@@ -93,15 +93,15 @@ function DetailNews() {
                                   }
                                   alt=""
                                 />
-                              </a>
+                              </Link>
                             </div>
                             <br />
-                            <div class="post_text_1 pr_30">
-                              <a href={`/news/${item.slug}`}>
+                            <div className="post_text_1 pr_30">
+                              <Link to={`/news/${item.slug}`}>
                                 <h3 dangerouslySetInnerHTML={{
                       __html: data.title,
                     }}></h3>
-                              </a>
+                              </Link>
                               <a
                                 href={`/news/${item.slug}`}
                                 className="a_un_underline"
@@ -118,8 +118,8 @@ function DetailNews() {
                     })}
                 </div>
               </div>
-            </div>
-          </div>
+            </Col>
+          </Row>
         </div>
       </Col>
       <Col className="gutter-row" span={3}></Col>

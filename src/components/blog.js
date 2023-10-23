@@ -39,21 +39,19 @@ function Blog(states) {
     <Row>
       <Col className="gutter-row" span={3}></Col>
       <Col className=" gutter-row" span={18}>
-        <div className="text-center headline">
+        <div className="headline" style={{ textAlign:"center" }}>
           <h1 style={{ color: "red", fontSize: 35 }}>{state.category}</h1>
         </div>
         {/* spinner */}
         {loading && <Loading />}
-        <div className="row">
+        <Row gutter={24}>
           {/* news items mapping */}
           {!loading &&
             listData.map((items, id) => {
               return (
-                <div
-                  className="col-md-4 col-sm-6 col-xs-12"
-                  style={{ margin: "10px 0px" }}
-                  key={items.url}
-                >
+                <Col xs={24} sm={12} md={6} className="row"    style={{ margin: "10px 0px" }}
+                key={items.url}>
+               
                   <Layout>
                     <Content>
                       <BlogsItem
@@ -75,10 +73,10 @@ function Blog(states) {
                       />
                     </Content>
                   </Layout>
-                </div>
+                </Col>
               );
             })}
-        </div>
+        </Row>
       </Col>
       <Col className="gutter-row" span={3}></Col>
     </Row>

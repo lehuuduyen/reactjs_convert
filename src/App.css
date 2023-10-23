@@ -8,6 +8,10 @@ body {
   background-size: cover;
 }
 
+*{
+  box-sizing: border-box;
+}
+
 button.btn-sm.btn.btn-color.mx-5 {
   color: black;
 }
@@ -547,4 +551,18 @@ p.Normal,p.description {
 }
 figcaption p.Image{
   
+}
+
+.f-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.t-center{
+  text-align: center;
+}
+
+#scrollableDiv{
+  max-width: 100%;
 }
