@@ -1,41 +1,44 @@
-.convert{
+.convert {
     width: 100%;
-    background: rgba(255,255,255,0.7);
+    background: rgba(255, 255, 255, 0.7);
     -webkit-backdrop-filter: blur(41px);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,255,255,0.35);
+    border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
-.card_upload .ant-card-body .ant-row{
+.card_upload .ant-card-body .ant-row {
     row-gap: 10px;
 }
 
-.convert__list a{
+.convert__list a {
     display: block;
     padding: 3px 5px;
     border-radius: 5px;
     margin: 1px 0;
 }
-.convert__list a:hover, .convert__list a.active{
+
+.convert__list a:hover,
+.convert__list a.active {
     font-weight: bold;
     background: -webkit-linear-gradient(to right, #243B55, #141E30);
     background: linear-gradient(to right, #243B55, #141E30);
 }
 
-.convert__list a:hover .ant-badge-status-text, .convert__list a.active .ant-badge-status-text{
-    color: white!important;
+.convert__list a:hover .ant-badge-status-text,
+.convert__list a.active .ant-badge-status-text {
+    color: white !important;
 }
 
-.ant-upload-drag{
+.ant-upload-drag {
     transition: all .3s ease;
 }
 
-.ant-upload-drag:hover{
+.ant-upload-drag:hover {
     transition: all .3s ease;
-    border-color: #0ba360!important;
+    border-color: #0ba360 !important;
 }
 
-.btn__upload{
+.btn__upload {
     cursor: pointer;
     padding: 0 15px;
     height: 45px;
@@ -54,7 +57,7 @@
     border-radius: 10px;
 }
 
-.btn__download{
+.btn__download {
     cursor: pointer;
     padding: 0 15px;
     height: 40px;
@@ -72,7 +75,8 @@
     color: white;
 }
 
-.btn__download:hover, .btn__upload:hover{
+.btn__download:hover,
+.btn__upload:hover {
     text-decoration: none;
     background-position: 100% 0;
     moz-transition: all .4s ease-in-out;
@@ -82,11 +86,11 @@
     color: white;
 }
 
-.card_upload{
+.card_upload {
     margin-top: 10px;
 }
 
-.guide__item{
+.guide__item {
     display: flex;
     flex-direction: column;
     row-gap: 20px;
@@ -95,42 +99,42 @@
 }
 
 @media screen and (max-width: 575px) {
-    .guide__item{
+    .guide__item {
         margin-bottom: 30px;
     }
 }
 
 @media screen and (max-width: 767px) {
-    .convert__list{
+    .convert__list {
         margin-bottom: 20px;
     }
 
-    .convert__list--wrap{
+    .convert__list--wrap {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
     }
 }
 
-.guide__item p{
+.guide__item p {
     margin: 0;
     padding: 0;
 }
 
-.guide__item .title{
+.guide__item .title {
     padding: 0;
     margin: 0;
 }
 
-.guide__item .img{
+.guide__item .img {
     height: 100px;
 }
 
-.guide__item .img img{
-    width: auto;
-    height: 100%;
+.guide__item .img img {
+    width: 100px ;
+    height: 100px;
 }
 
-.action{
+.action {
     display: flex;
     justify-content: flex-end;
     align-items: center;

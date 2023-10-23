@@ -214,7 +214,7 @@ function ConvertFile() {
             }}
           >
             <div>
-              <img src="/upload.png" alt="upload icon" style={{ width: 50 }} />
+              <img src="/upload.png" alt="upload icon" style={{ width: 50, height: 50 }} />
             </div>
             <p>Bấm để tải lên hoặc kéo thả file vào tại đây </p>
           </Upload.Dragger>
