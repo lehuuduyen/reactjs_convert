@@ -24,28 +24,41 @@ function ConvertFile() {
 
   function onChange(info) {
     const isValidType = typeAccept.includes(info.file.type);
+    const isValidSize = info.file.size;
     const indexFile = info.fileList.findIndex(
       (item) => item.uid === info.file.uid
     );
     const __fileList = [];
-	if(info.fileList.length > maxUpload){
-		messageApi.open({
-			type: "error",
-			content: `Giới hạn upload là ${maxUpload} file`,
-		  });
-	}
+    if (info.fileList.length > maxUpload) {
+      messageApi.open({
+        type: "error",
+        content: `Giới hạn upload là ${maxUpload} file`,
+      });
+    }
     info.fileList.map((item) => {
-      if (typeAccept.includes(item.type)) {
+      const validSize = item.size / 1024 <= 5 * 1024;
+      const validType =typeAccept.includes(item.type);
+      if (validType && validSize) {
         __fileList.push(item);
       }
     });
+    if (isValidSize / 1024 > 5 * 1024) {
+      info.fileList.splice(indexFile, 1);
+      messageApi.open({
+        type: "error",
+        content: `${info.file.name} kích thước quá lớn, chỉ được tối đa 5MB`,
+      });
+    }
     if (!isValidType) {
       info.fileList.splice(indexFile, 1);
       messageApi.open({
         type: "error",
-        content: `${info.file.name} không đúng định dạng , chỉ được dùng định dạng PNG, JPG và JPEG`,
+        content: `${info.file.name} không đúng định dạng, chỉ được dùng định dạng PNG, JPG và JPEG`,
       });
     }
+    setTimeout(()=>{
+      console.log(__fileList);
+    },)
 
     const newFileList = __fileList.map((file) => {
       if (file.response) {
@@ -167,14 +180,14 @@ function ConvertFile() {
             {fileList.length > 1 && (
               <Col sm={10}>
                 <div className="action">
-                  <Button
+                  {/* <Button
                     type="primary"
                     className="btn__upload"
                     icon={<CloudUploadOutlined style={{ color: "white" }} />}
                     size="large"
                   >
                     Convert All
-                  </Button>
+                  </Button> */}
                   <Button
                     type="dashed"
                     danger
@@ -196,7 +209,7 @@ function ConvertFile() {
             beforeUpload={(file) => {
               return false;
             }}
-			maxCount={maxUpload}
+            maxCount={maxUpload}
             fileList={fileList}
             showUploadList={{ showDownloadIcon: true }}
             itemRender={(originNode, file, fileList, { preview, remove }) => {
@@ -214,7 +227,11 @@ function ConvertFile() {
             }}
           >
             <div>
-              <img src="/upload.png" alt="upload icon" style={{ width: 50, height: 50 }} />
+              <img
+                src="/upload.png"
+                alt="upload icon"
+                style={{ width: 50, height: 50 }}
+              />
             </div>
             <p>Bấm để tải lên hoặc kéo thả file vào tại đây </p>
           </Upload.Dragger>
