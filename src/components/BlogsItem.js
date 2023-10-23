@@ -1,5 +1,4 @@
 import { Card } from "antd";
-import Meta from "antd/es/card/Meta";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 function onclick(params) {

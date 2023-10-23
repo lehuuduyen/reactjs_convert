@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { FaHome, FaInfo } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export class Navbar extends Component {
   render() {

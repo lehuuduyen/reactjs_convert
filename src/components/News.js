@@ -1,14 +1,12 @@
-import React, { Component, useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import Loading from "./Loading";
-import PropTypes from "prop-types";
 import { Col, Image, Row, Avatar, Divider, List, Skeleton } from "antd";
-import { Content, Header } from "antd/es/layout/layout";
 import { API_BACKEND, IMAGE_EMPTY } from "../helper/config";
 import axios from "axios";
 
 import { Link } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
-function News(states) {
+function News() {
   const [listData, setListData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currPage, setCurrPage] = useState(1);

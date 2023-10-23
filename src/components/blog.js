@@ -1,8 +1,7 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Loading from "./Loading";
-import PropTypes from "prop-types";
 import { Col, Layout, Row } from "antd";
-import { Content, Header } from "antd/es/layout/layout";
+import { Content } from "antd/es/layout/layout";
 import { API_BACKEND, IMAGE_EMPTY } from "../helper/config";
 import axios from "axios";
 import BlogsItem from "./BlogsItem";

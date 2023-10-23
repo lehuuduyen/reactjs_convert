@@ -2,7 +2,7 @@ import {Button, Col, Drawer, Layout, Row} from "antd";
 import {Link, NavLink} from "react-router-dom";
 import './Header.css';
 import LinkButton from "../components/LinkButton";
-import {useEffect, useState} from "react";
+import { useState} from "react";
 import {InteractionOutlined, MenuOutlined} from '@ant-design/icons';
 
 const {Header} = Layout;

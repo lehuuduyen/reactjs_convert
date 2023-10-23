@@ -1,6 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
-import { FaHome, FaInfo } from "react-icons/fa";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import React, {  useEffect, useState } from "react";
 import { API_BACKEND, IMAGE_EMPTY } from "../helper/config";
 import axios from "axios";
 import { Col, Image, Row } from "antd";
