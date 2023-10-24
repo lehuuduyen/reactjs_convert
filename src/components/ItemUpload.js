@@ -70,18 +70,18 @@ function ItemUpload(props) {
 
  
   const handleDownloadClick = () => {
-    let name = downloadLink.lastIndexOf("/") + 1;
-    axios(downloadLink, {
-    	mode: "no-cors",
-    	withCredentials: true,
-    	credentials: "same-origin",
-      })
-    	.then((res) => {
-    	  const { data, message, error } = res.data;
-    	})
-    	.catch((err) => {
-    	  console.log(err);
-    	});
+    let name = downloadLink.split("/")[7].split('?')[0];
+    // axios(downloadLink, {
+    // 	mode: "no-cors",
+    // 	withCredentials: true,
+    // 	credentials: "same-origin",
+    //   })
+    // 	.then((res) => {
+    // 	  const { data, message, error } = res.data;
+    // 	})
+    // 	.catch((err) => {
+    // 	  console.log(err);
+    // 	});
     const xhr = new XMLHttpRequest();
     xhr.open("GET", downloadLink, true);
     xhr.responseType = "blob";
