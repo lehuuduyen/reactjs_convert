@@ -34,7 +34,7 @@ const getBase64 = (file) =>
 const CONVERT_OPTIONS = {
   jpeg: ["png", "gif", "pdf", "ico"],
   jpg: ["tinyPNG", "png", "gif", "pdf", "ico"],
-  png: ["tinyPNG", "jpeg", "jpg", "pdf", "ico"],
+  png: ["tinyPNG", "jpeg", "jpg", "pdf"],
 };
 
 function ItemUpload(props) {
@@ -70,9 +70,10 @@ function ItemUpload(props) {
 
  
   const handleDownloadClick = () => {
-    let name = downloadLink.split("/")[7].split('?type=')[0];
-    let type = downloadLink.split("/")[7].split('?type=')[1]
-    
+    let link =downloadLink.split("/")
+  
+    let name = link[link.length -1].split('?type=')[0];
+    let type = link[link.length -1].split('?type=')[1]
     const xhr = new XMLHttpRequest();
     xhr.open("GET", downloadLink, true);
     xhr.responseType = "blob";
