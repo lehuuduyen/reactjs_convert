@@ -70,18 +70,9 @@ function ItemUpload(props) {
 
  
   const handleDownloadClick = () => {
-    let name = downloadLink.split("/")[7].split('?')[0];
-    // axios(downloadLink, {
-    // 	mode: "no-cors",
-    // 	withCredentials: true,
-    // 	credentials: "same-origin",
-    //   })
-    // 	.then((res) => {
-    // 	  const { data, message, error } = res.data;
-    // 	})
-    // 	.catch((err) => {
-    // 	  console.log(err);
-    // 	});
+    let name = downloadLink.split("/")[7].split('?type=')[0];
+    let type = downloadLink.split("/")[7].split('?type=')[1]
+    
     const xhr = new XMLHttpRequest();
     xhr.open("GET", downloadLink, true);
     xhr.responseType = "blob";
@@ -90,7 +81,7 @@ function ItemUpload(props) {
     	const imageUrl = urlCreator.createObjectURL(this.response);
     	const tag = document.createElement("a");
     	tag.href = imageUrl;
-    	tag.download = name;
+    	tag.download = name+"."+type;
     	document.body.appendChild(tag);
     	tag.click();
     	document.body.removeChild(tag);
@@ -121,9 +112,7 @@ function ItemUpload(props) {
       .then((res) => {
         const { data, message, error } = res.data;
         if (res.data.success) {
-          console.log("====================================");
-          console.log(JSON.parse(data));
-          console.log("====================================");
+       
           setFileConverted(JSON.parse(data));
           setDownloadLink(message);
           setStatusUpload(2);
