@@ -1,4 +1,4 @@
-import React, {  useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { API_BACKEND, IMAGE_EMPTY } from "../helper/config";
 import axios from "axios";
 import { Col, Image, Row } from "antd";
@@ -8,8 +8,7 @@ function Detail() {
   const [data, setData] = useState({});
   const [dataPopular, setDataPopular] = useState([]);
   const navigate = useNavigate();
-
-  useEffect(() => {
+  function getDetail() {
     const slug = window.location.pathname.split("/")[2];
     const url = API_BACKEND + `post/${slug}`;
     axios
@@ -23,8 +22,8 @@ function Detail() {
       .catch((err) => {
         console.log(err);
       });
-  }, [navigate]);
-  useEffect(() => {
+  }
+  function getPopular() {
     const urlPopular = API_BACKEND + `post-popular`;
     axios
       .get(urlPopular)
@@ -38,7 +37,12 @@ function Detail() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }
+  useEffect(() => {
+    getDetail();
+    getPopular();
+  }, [navigate]);
+
   return (
     <Row>
       <Col className="gutter-row" span={3}></Col>
@@ -47,8 +51,12 @@ function Detail() {
         span={18}
       >
         <div className="Detail">
-          <Row >
-            <Col lg={16} className=" posts-list" style={{ marginBottom: "50px" }}>
+          <Row>
+            <Col
+              lg={16}
+              className=" posts-list"
+              style={{ marginBottom: "50px" }}
+            >
               <div className="single-post">
                 <div className="feature-img">
                   <Image width={"100%"} src={data.urlToImage} />
@@ -89,12 +97,17 @@ function Detail() {
                             </div>
                             <div className="post_text_1 pr_30">
                               <Link to={`/blog/${item.slug}`}>
-                                <h3 dangerouslySetInnerHTML={{
-                      __html: item.title,
-                    }}></h3>
+                                <h3
+                                  dangerouslySetInnerHTML={{
+                                    __html: item.title,
+                                  }}
+                                ></h3>
                               </Link>
                               <p>
-                                <Link to={`/blog/${item.slug}`} className="a_un_underline">
+                                <Link
+                                  to={`/blog/${item.slug}`}
+                                  className="a_un_underline"
+                                >
                                   <span> {item.date}</span>
                                 </Link>
                               </p>
