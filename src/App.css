@@ -312,6 +312,29 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light::after {
   border-radius: 3px;
   margin-left: 5px
 }
+.single_catagory_post{
+  padding: 20px 0;
+}
+
+.single_catagory_post ~ .single_catagory_post {
+    border-top: 1px solid #1ca2fb61;
+}
+.ant-skeleton.ant-skeleton-element.ant-skeleton-active ,.ant-skeleton-image{
+  width: 100%;
+  min-width: 100%;
+  height: 180px;
+  min-height: 180px;
+}
+.category_post_img{
+  width: 100%;
+  height: 180px;
+  position: relative;
+}
+.category_post_img img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .Detail img{
   width: 100%;
     height: auto;

@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { API_BACKEND, IMAGE_EMPTY } from "../helper/config";
 import axios from "axios";
-import { Col, Row, message } from "antd";
+import { Col, Row, Skeleton, message } from "antd";
 
 function DetailNews() {
   const navigate = useNavigate();
   const [data, setData] = useState({});
   const [dataPopular, setDataPopular] = useState([]);
   const [messageApi, contextHolder] = message.useMessage();
-  function getDetail(){
+  function getDetail() {
     const slug = window.location.pathname.split("/")[2];
     const url = API_BACKEND + `news/${slug}`;
     axios
@@ -18,6 +18,7 @@ function DetailNews() {
         const { data, message, error } = res.data;
         if (!error) {
           setData(data);
+          getPopular();
         }
       })
       .catch((err) => {
@@ -28,7 +29,7 @@ function DetailNews() {
         navigate("/news");
       });
   }
-  function getPopular(){
+  function getPopular() {
     const urlPopular = API_BACKEND + `call-news-popular`;
     axios
       .get(urlPopular)
@@ -43,95 +44,100 @@ function DetailNews() {
       });
   }
   useEffect(() => {
-    getDetail()
-    getPopular()
-    
+    setData({});
+    setDataPopular([]);
+    getDetail();
   }, [navigate]);
- 
+
   return (
     <Row>
       {contextHolder}
 
       <Col className="gutter-row" span={3}></Col>
       <Col
-        className="blog_area single-post-area all_post section_padding"
+        className=" blog_area single-post-area all_post section_padding"
         span={18}
       >
-        <div className="Detail">
-          <Row className="row">
-            <Col
-              lg={16}
-              className="posts-list"
-              style={{ marginBottom: "50px" }}
-            >
-              <div className="single-post">
-                <div className="blog_details">
-                  <h1
-                    dangerouslySetInnerHTML={{
-                      __html: data.title,
-                    }}
-                  ></h1>
-                  <span>{data.date}</span>
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: data.content,
-                    }}
-                  ></div>
-                </div>
+        <Row className="row">
+          <Col lg={16} className="Detail posts-list" style={{ marginBottom: "50px" }}>
+            <div className="single-post">
+              <div className="blog_details">
+                {Object.keys(data).length?  <h1
+                  dangerouslySetInnerHTML={{
+                    __html: data.title,
+                  }}
+                ></h1> : <><Skeleton  paragraph={{
+                  rows: 4,
+                }}></Skeleton> <Skeleton.Image active={true}  /> <Skeleton  paragraph={{
+                  rows: 20,
+                }}></Skeleton>  </>}
+               
+                <span>{data.date}</span>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: data.content,
+                  }}
+                ></div>
               </div>
-            </Col>
+            </div>
+          </Col>
 
-            <Col lg={6}>
-              <div className="sidebar_widget" style={{ paddingLeft: 20 }}>
-                <div className="single_sidebar_wiget">
-                  <div className="sidebar_tittle">
-                    <h2 style={{ color: "orange" }}>Tin nổi bật</h2>
-                  </div>
-                  {dataPopular &&
-                    dataPopular.map((item, id) => {
-                      return (
-                        <>
-                          <div className="single_catagory_post post_2 ">
-                            <div className="category_post_img">
-                              <Link to={`/news/${item.slug}`}>
-                                <img
-                                  src={
-                                    item.urlToImage
-                                      ? item.urlToImage
-                                      : IMAGE_EMPTY
-                                  }
-                                  alt=""
-                                />
-                              </Link>
-                            </div>
-                            <br />
-                            <div className="post_text_1 pr_30">
-                              <Link to={`/news/${item.slug}`}>
-                                <h3
-                                  dangerouslySetInnerHTML={{
-                                    __html: item.title,
-                                  }}
-                                ></h3>
-                              </Link>
-                              <a
-                                href={`/news/${item.slug}`}
-                                className="a_un_underline"
-                              >
-                                <span> {item.date}</span>
-                              </a>
-                            </div>
+          <Col lg={8}>
+            <div className="sidebar_widget" style={{ paddingLeft: 20 }}>
+              <div className="single_sidebar_wiget">
+                <div className="sidebar_tittle">
+                  <h2 style={{ color: "orange" }}>Tin nổi bật</h2>
+                </div>
+                {dataPopular.length > 0 ? (
+                  dataPopular.map((item, id) => {
+                    return (
+                      <>
+                        <div className="single_catagory_post post_2 ">
+                          <div className="category_post_img">
+                            <Link to={`/news/${item.slug}`}>
+                              <img
+                                src={
+                                  item.urlToImage
+                                    ? item.urlToImage
+                                    : IMAGE_EMPTY
+                                }
+                                alt=""
+                              />
+                            </Link>
                           </div>
-                          <hr></hr>
-
-                          <br></br>
-                        </>
-                      );
-                    })}
-                </div>
+                          <div className="post_text_1 pr_30">
+                            <Link to={`/news/${item.slug}`}>
+                              <h3
+                                dangerouslySetInnerHTML={{
+                                  __html: item.title,
+                                }}
+                              ></h3>
+                            </Link>
+                            <a
+                              href={`/news/${item.slug}`}
+                              className="a_un_underline"
+                            >
+                              <span> {item.date}</span>
+                            </a>
+                          </div>
+                        </div>
+                      </>
+                    );
+                  })
+                ) : (
+                  <>
+                    <Skeleton.Image active={true} width="100%" />
+                    <Skeleton />
+                    <Skeleton.Image active={true} width="100%" />
+                    <Skeleton />
+                    <Skeleton.Image active={true} width="100%" />
+                    <Skeleton />
+                  </>
+                )}
               </div>
-            </Col>
-          </Row>
-        </div>
+            </div>
+          </Col>
+        </Row>
       </Col>
       <Col className="gutter-row" span={3}></Col>
     </Row>

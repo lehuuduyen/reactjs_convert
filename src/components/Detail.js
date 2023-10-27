@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { API_BACKEND, IMAGE_EMPTY } from "../helper/config";
 import axios from "axios";
-import { Col, Image, Row } from "antd";
+import { Col, Image, Row, Skeleton } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 
 function Detail() {
@@ -17,6 +17,7 @@ function Detail() {
         const { data, message, error } = res.data;
         if (!error) {
           setData(data);
+          getPopular();
         }
       })
       .catch((err) => {
@@ -30,7 +31,6 @@ function Detail() {
       .then((res) => {
         const { data, message, error } = res.data;
         if (!error) {
-          console.log(data);
           setDataPopular(data);
         }
       })
@@ -39,8 +39,9 @@ function Detail() {
       });
   }
   useEffect(() => {
+    setData({});
+    setDataPopular([]);
     getDetail();
-    getPopular();
   }, [navigate]);
 
   return (
@@ -50,80 +51,92 @@ function Detail() {
         className="blog_area single-post-area all_post section_padding"
         span={18}
       >
-        <div className="Detail">
-          <Row>
-            <Col
-              lg={16}
-              className=" posts-list"
-              style={{ marginBottom: "50px" }}
-            >
-              <div className="single-post">
-                <div className="feature-img">
-                  <Image width={"100%"} src={data.urlToImage} />
-                </div>
-                <div className="blog_details">
-                  <h1>{data.title}</h1>
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: data.content,
-                    }}
-                  ></div>
-                </div>
+        <Row>
+          <Col
+            lg={16}
+            className="Detail posts-list"
+            style={{ marginBottom: "50px" }}
+          >
+            <div className="single-post">
+              {Object.keys(data).length? <div className="feature-img">
+                <Image width={"100%"} src={data.urlToImage} />
+              </div> : <><Skeleton  paragraph={{
+                  rows: 4,
+                }}></Skeleton> <Skeleton.Image active={true}  /> <Skeleton  paragraph={{
+                  rows: 20,
+                }}></Skeleton>  </>}
+              
+              <div className="blog_details">
+                <h1>{data.title}</h1>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: data.content,
+                  }}
+                ></div>
               </div>
-            </Col>
+            </div>
+          </Col>
 
-            <Col lg={6}>
-              <div className="sidebar_widget">
-                <div className="single_sidebar_wiget">
-                  <div className="sidebar_tittle">
-                    <h2 style={{ color: "orange" }}>Tin nổi bật</h2>
-                  </div>
-                  {dataPopular &&
-                    dataPopular.map((item, id) => {
-                      return (
-                        <>
-                          <div className="single_catagory_post post_2 ">
-                            <div className="category_post_img">
-                              <Link to={`/blog/${item.slug}`}>
-                                <img
-                                  src={
-                                    item.urlToImage
-                                      ? item.urlToImage
-                                      : IMAGE_EMPTY
-                                  }
-                                  alt=""
-                                />
-                              </Link>
-                            </div>
-                            <div className="post_text_1 pr_30">
-                              <Link to={`/blog/${item.slug}`}>
-                                <h3
-                                  dangerouslySetInnerHTML={{
-                                    __html: item.title,
-                                  }}
-                                ></h3>
-                              </Link>
-                              <p>
-                                <Link
-                                  to={`/blog/${item.slug}`}
-                                  className="a_un_underline"
-                                >
-                                  <span> {item.date}</span>
-                                </Link>
-                              </p>
-                            </div>
+          <Col lg={6}>
+            <div className="sidebar_widget">
+              <div className="single_sidebar_wiget">
+                <div className="sidebar_tittle">
+                  <h2 style={{ color: "orange" }}>Tin nổi bật</h2>
+                </div>
+
+                {dataPopular.length > 0 ? (
+                  dataPopular.map((item, id) => {
+                    return (
+                      <>
+                        <div className="single_catagory_post post_2 ">
+                          <div className="category_post_img">
+                            <Link to={`/blog/${item.slug}`}>
+                              <img
+                                src={
+                                  item.urlToImage
+                                    ? item.urlToImage
+                                    : IMAGE_EMPTY
+                                }
+                                alt=""
+                              />
+                            </Link>
                           </div>
-                          <hr></hr>
-
-                          <br></br>
-                        </>
-                      );
-                    })}
-                </div>
+                          <div className="post_text_1 pr_30">
+                            <Link to={`/blog/${item.slug}`}>
+                              <h3
+                                dangerouslySetInnerHTML={{
+                                  __html: item.title,
+                                }}
+                              ></h3>
+                            </Link>
+                            <p>
+                              <Link
+                                to={`/blog/${item.slug}`}
+                                className="a_un_underline"
+                              >
+                                <span> {item.date}</span>
+                              </Link>
+                            </p>
+                          </div>
+                        </div>
+                       
+                      </>
+                    );
+                  })
+                ) : (
+                  <>
+                    <Skeleton.Image active={true} width="100%" />
+                    <Skeleton />
+                    <Skeleton.Image active={true} width="100%" />
+                    <Skeleton />
+                    <Skeleton.Image active={true} width="100%" />
+                    <Skeleton />
+                  </>
+                )}
               </div>
-            </Col>
-          </Row>
-        </div>
+            </div>
+          </Col>
+        </Row>
       </Col>
       <Col className="gutter-row" span={3}></Col>
     </Row>
