@@ -86,7 +86,7 @@ function DetailNews() {
             <div className="sidebar_widget" style={{ paddingLeft: 20 }}>
               <div className="single_sidebar_wiget">
                 <div className="sidebar_tittle">
-                  <h2 style={{ color: "orange" }}>Tin nổi bật</h2>
+                  {dataPopular.length > 0?<h2 style={{ color: "orange" }}>Tin nổi bật</h2>:<Skeleton />} 
                 </div>
                 {dataPopular.length > 0 ? (
                   dataPopular.map((item, id) => {

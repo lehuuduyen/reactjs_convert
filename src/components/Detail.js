@@ -58,14 +58,26 @@ function Detail() {
             style={{ marginBottom: "50px" }}
           >
             <div className="single-post">
-              {Object.keys(data).length? <div className="feature-img">
-                <Image width={"100%"} src={data.urlToImage} />
-              </div> : <><Skeleton  paragraph={{
-                  rows: 4,
-                }}></Skeleton> <Skeleton.Image active={true}  /> <Skeleton  paragraph={{
-                  rows: 20,
-                }}></Skeleton>  </>}
-              
+              {Object.keys(data).length ? (
+                <div className="feature-img">
+                  <Image width={"100%"} src={data.urlToImage} />
+                </div>
+              ) : (
+                <>
+                  <Skeleton
+                    paragraph={{
+                      rows: 4,
+                    }}
+                  ></Skeleton>{" "}
+                  <Skeleton.Image active={true} />{" "}
+                  <Skeleton
+                    paragraph={{
+                      rows: 20,
+                    }}
+                  ></Skeleton>{" "}
+                </>
+              )}
+
               <div className="blog_details">
                 <h1>{data.title}</h1>
                 <div
@@ -81,7 +93,11 @@ function Detail() {
             <div className="sidebar_widget">
               <div className="single_sidebar_wiget">
                 <div className="sidebar_tittle">
-                  <h2 style={{ color: "orange" }}>Tin nổi bật</h2>
+                  {dataPopular.length > 0 ? (
+                    <h2 style={{ color: "orange" }}>Tin nổi bật</h2>
+                  ) : (
+                    <Skeleton />
+                  )}
                 </div>
 
                 {dataPopular.length > 0 ? (
@@ -119,7 +135,6 @@ function Detail() {
                             </p>
                           </div>
                         </div>
-                       
                       </>
                     );
                   })
