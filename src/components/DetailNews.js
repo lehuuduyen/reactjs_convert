@@ -99,7 +99,7 @@ function DetailNews() {
                             <div className="post_text_1 pr_30">
                               <Link to={`/news/${item.slug}`}>
                                 <h3 dangerouslySetInnerHTML={{
-                      __html: data.title,
+                      __html: item.title,
                     }}></h3>
                               </Link>
                               <a
