@@ -313,7 +313,10 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light::after {
   margin-left: 5px
 }
 .Detail img{
-  width: -webkit-fill-available !important;
+  width: 100%;
+    height: auto;
+    max-width: 100%;
+    padding: 10px 0px;
 }
 .wrapper-24h .filter-viewmore .btn_vne.active {
   background: #9f224e;
