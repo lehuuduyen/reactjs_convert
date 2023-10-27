@@ -52,7 +52,7 @@ function DetailNews() {
         className="blog_area single-post-area all_post section_padding"
         span={18}
       >
-        <div className="">
+        <div className="Detail">
           <Row className="row">
             <Col lg={16} className="posts-list" style={{ marginBottom: "50px" }}>
               <div className="single-post">

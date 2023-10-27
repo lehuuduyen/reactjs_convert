@@ -312,7 +312,9 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light::after {
   border-radius: 3px;
   margin-left: 5px
 }
-
+.Detail img{
+  width: -webkit-fill-available !important;
+}
 .wrapper-24h .filter-viewmore .btn_vne.active {
   background: #9f224e;
   color: #fff
