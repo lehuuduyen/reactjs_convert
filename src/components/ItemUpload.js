@@ -22,6 +22,7 @@ import {
 import "./ConvertFile.css";
 import axios from "axios";
 import { API_BACKEND } from "../helper/config";
+import { useNavigate, useParams } from "react-router-dom";
 
 const getBase64 = (file) =>
   new Promise((resolve, reject) => {
@@ -31,7 +32,7 @@ const getBase64 = (file) =>
     reader.onerror = (error) => reject(error);
   });
 
-const CONVERT_OPTIONS = {
+let CONVERT_OPTIONS = {
   jpeg: ["png", "gif", "pdf", "ico"],
   jpg: ["tinyPNG", "png", "gif", "pdf", "ico"],
   png: ["tinyPNG", "jpeg", "jpg", "pdf"],
@@ -47,8 +48,30 @@ function ItemUpload(props) {
   const [percent, setPercent] = useState(0);
   const [isException, setIsException] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
+  const { id } = useParams();
+  // const navigator = useNavigate();
+  // useEffect(() => {
+  //   if (id) {
+  //     const splitId = id.split("-");
+  //     console.log('splitId',splitId);
+  //     setParams([splitId[1].toUpperCase(), splitId[3].toUpperCase()]);
+  //     console.log('params',params);
 
-  useEffect(async () => {
+  //   }
+  // }, [navigator]);
+  
+
+
+  useEffect( () => {
+    console.log('params-----', props.params);
+    if (!id || props.params[1] === "TINYPNG") {
+      CONVERT_OPTIONS = {
+        jpg: ["tinyPNG"],
+        jpeg: ["tinyPNG"],
+        png: ["tinyPNG"],
+      };
+    }
+    console.log(CONVERT_OPTIONS);
     if (file) {
       const dataType = file.type.split("/")[1];
       const options =
@@ -57,7 +80,9 @@ function ItemUpload(props) {
           return { value: item, label: item.toUpperCase() };
         });
       if (!file.url && !file.preview) {
-        file.preview = await getBase64(file.originFileObj);
+        getBase64(file.originFileObj).then(result => {
+          file.preview =  result
+        });
       }
       setOptionType(options);
       options && setSelectedOption(options[0].value);
@@ -68,24 +93,23 @@ function ItemUpload(props) {
     setSelectedOption(value);
   };
 
- 
   const handleDownloadClick = () => {
-    let link =downloadLink.split("/")
-  
-    let name = link[link.length -1].split('?type=')[0];
-    let type = link[link.length -1].split('?type=')[1]
+    let link = downloadLink.split("/");
+
+    let name = link[link.length - 1].split("?type=")[0];
+    let type = link[link.length - 1].split("?type=")[1];
     const xhr = new XMLHttpRequest();
     xhr.open("GET", downloadLink, true);
     xhr.responseType = "blob";
     xhr.onload = function () {
-    	const urlCreator = window.URL || window.webkitURL;
-    	const imageUrl = urlCreator.createObjectURL(this.response);
-    	const tag = document.createElement("a");
-    	tag.href = imageUrl;
-    	tag.download = name+"."+type;
-    	document.body.appendChild(tag);
-    	tag.click();
-    	document.body.removeChild(tag);
+      const urlCreator = window.URL || window.webkitURL;
+      const imageUrl = urlCreator.createObjectURL(this.response);
+      const tag = document.createElement("a");
+      tag.href = imageUrl;
+      tag.download = name + "." + type;
+      document.body.appendChild(tag);
+      tag.click();
+      document.body.removeChild(tag);
     };
     xhr.send();
   };
@@ -113,7 +137,6 @@ function ItemUpload(props) {
       .then((res) => {
         const { data, message, error } = res.data;
         if (res.data.success) {
-       
           setFileConverted(JSON.parse(data));
           setDownloadLink(message);
           setStatusUpload(2);
