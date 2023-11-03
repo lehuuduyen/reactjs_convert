@@ -17,6 +17,7 @@ import ItemUpload from "./ItemUpload";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { CloudUploadOutlined, DeleteOutlined } from "@ant-design/icons";
 import ConvertGuide from "./ConvertGuide";
+import Resize from "./resize";
 const maxUpload = 10;
 const typeAccept = ["image/png", "image/jpg", "image/jpeg"];
 
@@ -28,7 +29,7 @@ function ConvertFile() {
   const navigator = useNavigate()
   useEffect(() => {
     setFileList([])
-    if (id) {
+    if (id && id !=="resize") {
       const splitId = id.split("-");
       setParams([splitId[1].toUpperCase(), splitId[3].toUpperCase()]);
     }
@@ -97,7 +98,7 @@ function ConvertFile() {
   }
   const items = [
     getItem("Chuyển đổi TinyPNG", "/convert/chuyen-png-sang-tinypng"),
-    getItem("Chuyển đổi kích thước hình ảnh", "/resize"),
+    getItem("Chuyển đổi kích thước hình ảnh", "/convert/resize"),
     getItem('Chuyển đổi file', 'sub1',"", [
       getItem('PNG', 'g1', null, [getItem('JPEG', '/convert/chuyen-png-sang-jpeg'), getItem('JPG', '/convert/chuyen-png-sang-jpg'), getItem('PDF', '/convert/chuyen-png-sang-pdf'), getItem('ICO', '/convert/chuyen-png-sang-ico')], 'group'),
       getItem('JPG', 'g2', null, [getItem('PNG', '/convert/chuyen-jpg-sang-png'), getItem('PDF', '/convert/chuyen-jpg-sang-pdf'),  getItem('ICO', '/convert/chuyen-jpg-sang-ico')], 'group'),
@@ -122,7 +123,11 @@ function ConvertFile() {
         />
        
       </Col>
-      <Col xs={24} md={17} lg={19}>
+      {id === 'resize'? 
+       <Resize></Resize>
+      
+      
+      : <Col xs={24} md={17} lg={19}>
         <Card className="convert convert__box">
           <Row>
             <Col sm={14}>
@@ -191,7 +196,8 @@ function ConvertFile() {
           </Upload.Dragger>
         </Card>
         <ConvertGuide from={params[0]} to={params[1]} />
-      </Col>
+      </Col>}
+     
     </Row>
   );
 }

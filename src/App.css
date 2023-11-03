@@ -594,3 +594,9 @@ figcaption p.Image{
 #scrollableDiv{
   max-width: 100%;
 }
+.title,.ant-upload-wrapper{
+  width: 100%;
+}
+.css-dev-only-do-not-override-pr0fja.ant-upload.ant-upload-drag {
+  height: auto;
+}

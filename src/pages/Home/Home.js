@@ -10,7 +10,7 @@ function Home() {
 	const {id} = useParams();
 
 	useEffect(() => {
-		if(id){
+		if(id && id !=="resize"){
 			const splitId = id.split('-');
 			setParams([splitId[1].toUpperCase(), splitId[3].toUpperCase()])
 		}
