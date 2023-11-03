@@ -32,11 +32,7 @@ const getBase64 = (file) =>
     reader.onerror = (error) => reject(error);
   });
 
-let CONVERT_OPTIONS = {
-  jpeg: ["png", "gif", "pdf", "ico"],
-  jpg: ["tinyPNG", "png", "gif", "pdf", "ico"],
-  png: ["tinyPNG", "jpeg", "jpg", "pdf"],
-};
+
 
 function ItemUpload(props) {
   const { file } = props;
@@ -64,6 +60,11 @@ function ItemUpload(props) {
 
   useEffect( () => {
     console.log('params-----', props.params);
+    let CONVERT_OPTIONS = {
+      jpeg: ["png", "gif", "pdf", "ico"],
+      jpg: ["tinyPNG", "png", "gif", "pdf", "ico"],
+      png: ["tinyPNG", "jpeg", "jpg", "pdf"],
+    };
     if (!id || props.params[1] === "TINYPNG") {
       CONVERT_OPTIONS = {
         jpg: ["tinyPNG"],
@@ -71,7 +72,6 @@ function ItemUpload(props) {
         png: ["tinyPNG"],
       };
     }
-    console.log(CONVERT_OPTIONS);
     if (file) {
       const dataType = file.type.split("/")[1];
       const options =

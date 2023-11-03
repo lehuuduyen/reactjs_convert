@@ -32,7 +32,10 @@ function ConvertFile() {
       const splitId = id.split("-");
       setParams([splitId[1].toUpperCase(), splitId[3].toUpperCase()]);
     }
-  }, [id]);
+    return () => {
+      setParams([])
+    }
+  }, [id]); 
 
   function onChange(info) {
     const isValidType = typeAccept.includes(info.file.type);
