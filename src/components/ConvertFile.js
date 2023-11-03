@@ -131,9 +131,13 @@ function ConvertFile() {
         <Card className="convert convert__box">
           <Row>
             <Col sm={14}>
-              <Title>
+            {(!id || params[1] === "TINYPNG")? <Title>
+                Giải nén Hình ảnh
+              </Title>:<Title>
                 Chuyển đổi <b>{params[0]}</b> sang <b>{params[1]}</b>
-              </Title>
+              </Title>}
+
+              
             </Col>
             {fileList.length > 1 && (
               <Col sm={10}>

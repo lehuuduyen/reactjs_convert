@@ -9,7 +9,9 @@ import {
   Upload,
   Image as ImgAnt,
   Button,
+  Checkbox,
 } from "antd";
+
 import { Content } from "antd/es/layout/layout";
 import { API_BACKEND, IMAGE_EMPTY } from "../helper/config";
 import axios from "axios";
@@ -27,14 +29,25 @@ const getBase64 = (file) =>
 function Resize(states) {
   // function to handle next and previous.
   const [sizeWidthHeight, setSizeWidthHeight] = useState([0, 0]);
+  const [sizeCheckBox, setCheckBox] = useState(true);
   const [sizeDefaultWidthHeight, setSizeDefaultWidthHeight] = useState([0, 0]);
   const [img, setImg] = useState({});
 
   const onChangeWidth = (value) => {
-    setSizeWidthHeight([value, sizeWidthHeight[1]]);
+    if(sizeCheckBox){
+      let tileHeight = Math.round(value/(sizeDefaultWidthHeight[0]/sizeDefaultWidthHeight[1]))
+      setSizeWidthHeight([value, tileHeight]);
+    }else{
+      setSizeWidthHeight([value, sizeWidthHeight[1]]);
+    }
   };
   const onChangeHeight = (value) => {
-    setSizeWidthHeight([sizeWidthHeight[0], value]);
+    if(sizeCheckBox){
+      let tileWidtth = Math.round(value*(sizeDefaultWidthHeight[0]/sizeDefaultWidthHeight[1]))
+      setSizeWidthHeight([tileWidtth, value]);
+    }else{
+      setSizeWidthHeight([sizeWidthHeight[0], value]);
+    }
   };
   const clickDefault = (value) => {
     setSizeWidthHeight([sizeDefaultWidthHeight[0], sizeDefaultWidthHeight[1]]);
@@ -59,6 +72,10 @@ function Resize(states) {
       sizeWidthHeight[0],
       sizeWidthHeight[1],
     );
+  };
+  const onChangeCheck = (e) => {
+    setCheckBox(e.target.checked)
+    
   };
   //render
   return (
@@ -144,6 +161,9 @@ function Resize(states) {
                   value={sizeWidthHeight[1]}
                   onChange={onChangeHeight}
                 />
+              </p>
+              <p>
+              <Checkbox defaultChecked={sizeCheckBox} onChange={onChangeCheck}>Checkbox</Checkbox>
               </p>
               <p>
                 <Button

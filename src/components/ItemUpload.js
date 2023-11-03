@@ -59,7 +59,6 @@ function ItemUpload(props) {
 
 
   useEffect( () => {
-    console.log('params-----', props.params);
     let CONVERT_OPTIONS = {
       jpeg: ["png", "gif", "pdf", "ico"],
       jpg: ["tinyPNG", "png", "gif", "pdf", "ico"],
