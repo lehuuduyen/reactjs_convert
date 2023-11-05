@@ -53,7 +53,6 @@ function Resize(states) {
     setSizeWidthHeight([sizeDefaultWidthHeight[0], sizeDefaultWidthHeight[1]]);
   };
   const clickDownload = (value) => {
-    console.log(sizeWidthHeight);
     Resizer.imageFileResizer(
       img,
       sizeWidthHeight[0],
@@ -138,7 +137,7 @@ function Resize(states) {
       <Col xs={20} md={4} lg={4}>
         <Card className="convert convert__box">
           <Row>
-            <Col sm={14}>
+            <Col >
               <p>
                 <Button type="primary" onClick={clickDefault}>
                   Mặc định
@@ -163,7 +162,7 @@ function Resize(states) {
                 />
               </p>
               <p>
-              <Checkbox defaultChecked={sizeCheckBox} onChange={onChangeCheck}>Checkbox</Checkbox>
+              <Checkbox defaultChecked={sizeCheckBox} onChange={onChangeCheck}>Giữ tỷ lệ ban đầu</Checkbox>
               </p>
               <p>
                 <Button
