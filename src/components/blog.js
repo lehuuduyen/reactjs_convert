@@ -5,6 +5,7 @@ import { Content } from "antd/es/layout/layout";
 import { API_BACKEND, IMAGE_EMPTY } from "../helper/config";
 import axios from "axios";
 import BlogsItem from "./BlogsItem";
+import { Helmet } from "react-helmet-async";
 
 function Blog(states) {
   const [listData, setListData] = useState([]);
@@ -33,10 +34,20 @@ function Blog(states) {
       });
   }, []);
   // function to handle next and previous.
-
+  const meta = "Danh sách blog"
   //render
   return (
     <Row>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{meta}</title>
+        <meta name="keywords" content={meta} />
+        <meta name="description" content={meta} />
+
+        <meta property="og:url" content={window.location.href} />
+        <meta property="og:title" content={meta} />
+        <meta property="og:description" content={meta} />
+      </Helmet>
       <Col className="gutter-row" span={3}></Col>
       <Col className=" gutter-row" span={18}>
         <div className="headline" style={{ textAlign:"center" }}>

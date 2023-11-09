@@ -18,6 +18,7 @@ import axios from "axios";
 import BlogsItem from "./BlogsItem";
 import Title from "./Title";
 import Resizer from "react-image-file-resizer";
+import { Helmet } from "react-helmet-async";
 
 const getBase64 = (file) =>
   new Promise((resolve, reject) => {
@@ -34,18 +35,22 @@ function Resize(states) {
   const [img, setImg] = useState({});
 
   const onChangeWidth = (value) => {
-    if(sizeCheckBox){
-      let tileHeight = Math.round(value/(sizeDefaultWidthHeight[0]/sizeDefaultWidthHeight[1]))
+    if (sizeCheckBox) {
+      let tileHeight = Math.round(
+        value / (sizeDefaultWidthHeight[0] / sizeDefaultWidthHeight[1])
+      );
       setSizeWidthHeight([value, tileHeight]);
-    }else{
+    } else {
       setSizeWidthHeight([value, sizeWidthHeight[1]]);
     }
   };
   const onChangeHeight = (value) => {
-    if(sizeCheckBox){
-      let tileWidtth = Math.round(value*(sizeDefaultWidthHeight[0]/sizeDefaultWidthHeight[1]))
+    if (sizeCheckBox) {
+      let tileWidtth = Math.round(
+        value * (sizeDefaultWidthHeight[0] / sizeDefaultWidthHeight[1])
+      );
       setSizeWidthHeight([tileWidtth, value]);
-    }else{
+    } else {
       setSizeWidthHeight([sizeWidthHeight[0], value]);
     }
   };
@@ -63,22 +68,32 @@ function Resize(states) {
       (uri) => {
         var a = document.createElement("a"); //Create <a>
         console.log("data:image/png;base64," + uri);
-        a.href =  uri; //Image Base64 Goes here
+        a.href = uri; //Image Base64 Goes here
         a.download = img.name; //File name Here
-        a.click(); 
+        a.click();
       },
       "base64",
       sizeWidthHeight[0],
-      sizeWidthHeight[1],
+      sizeWidthHeight[1]
     );
   };
   const onChangeCheck = (e) => {
-    setCheckBox(e.target.checked)
-    
+    setCheckBox(e.target.checked);
   };
+  const meta = "Chuyển đổi kích thước hình ảnh"
   //render
   return (
     <>
+       <Helmet>
+        <meta charSet="utf-8" />
+        <title>{meta}</title>
+        <meta name="keywords" content={meta} />
+        <meta name="description" content={meta} />
+
+        <meta property="og:url" content={window.location.href} />
+        <meta property="og:title" content={meta} />
+        <meta property="og:description" content={meta} />
+      </Helmet>
       <Col xs={20} md={13} lg={15}>
         <Card className="convert convert__box">
           <Row style={{ widht: "100%" }}>
@@ -137,7 +152,7 @@ function Resize(states) {
       <Col xs={20} md={4} lg={4}>
         <Card className="convert convert__box">
           <Row>
-            <Col >
+            <Col>
               <p>
                 <Button type="primary" onClick={clickDefault}>
                   Mặc định
@@ -162,7 +177,12 @@ function Resize(states) {
                 />
               </p>
               <p>
-              <Checkbox defaultChecked={sizeCheckBox} onChange={onChangeCheck}>Giữ tỷ lệ ban đầu</Checkbox>
+                <Checkbox
+                  defaultChecked={sizeCheckBox}
+                  onChange={onChangeCheck}
+                >
+                  Giữ tỷ lệ ban đầu
+                </Checkbox>
               </p>
               <p>
                 <Button

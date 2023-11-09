@@ -38,7 +38,7 @@ function HeaderCustom() {
 		<Layout>
 			<Row>
 				<Col xs={18} lg={4} className="header__logo">
-					<Link to=""><h1>TinyPNG</h1></Link>
+					<Link to="/"><h1>TinyPNG</h1></Link>
 				</Col>
 				<Col xs={0} lg={20} className="header__right">
 					<Row>
