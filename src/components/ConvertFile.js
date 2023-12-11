@@ -20,7 +20,7 @@ import ConvertGuide from "./ConvertGuide";
 import Resize from "./resize";
 import { Helmet } from "react-helmet-async";
 const maxUpload = 10;
-const typeAccept = ["image/png", "image/jpg", "image/jpeg"];
+const typeAccept = ["image/png", "image/jpg", "image/jpeg", "image/jpeg","video/mp4"];
 
 function ConvertFile() {
   const [fileList, setFileList] = useState([]);
@@ -53,13 +53,15 @@ function ConvertFile() {
       });
     }
     info.fileList.map((item) => {
-      const validSize = item.size / 1024 <= 5 * 1024;
+      const validSize = (item.type =="video/mp4")?true :item.size / 1024 <= 5 * 1024;
       const validType = typeAccept.includes(item.type);
       if (validType && validSize) {
+        console.log(item);
         __fileList.push(item);
       }
     });
-    if (isValidSize / 1024 > 5 * 1024) {
+
+    if (isValidSize / 1024 > 5 * 1024 && info.file.type !="video/mp4") {
       info.fileList.splice(indexFile, 1);
       messageApi.open({
         type: "error",
@@ -81,6 +83,7 @@ function ConvertFile() {
       return file;
     });
     setFileList(newFileList);
+    console.log(fileList);
   }
 
   const onRemoveAll = () => {
@@ -134,6 +137,15 @@ function ConvertFile() {
         ],
         "group"
       ),
+      getItem(
+        "MP4",
+        "g2",
+        null,
+        [
+          getItem("M3U8", "/convert/chuyen-mp4-sang-m3u8"),
+        ],
+        "group"
+      )
     ]),
   ];
   const onClick = (e) => {
