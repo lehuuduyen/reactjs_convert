@@ -60,6 +60,7 @@ function ItemUpload(props) {
 
   useEffect( () => {
     let CONVERT_OPTIONS = {
+      mp4: ["m3u8"],
       jpeg: ["png", "gif", "pdf", "ico"],
       jpg: ["tinyPNG", "png", "gif", "pdf", "ico"],
       png: ["tinyPNG", "jpeg", "jpg", "pdf"],
@@ -71,6 +72,8 @@ function ItemUpload(props) {
         png: ["tinyPNG"],
       };
     }
+    
+
     if (file) {
       const dataType = file.type.split("/")[1];
       const options =
@@ -83,6 +86,7 @@ function ItemUpload(props) {
           file.preview =  result
         });
       }
+      
       setOptionType(options);
       options && setSelectedOption(options[0].value);
     }
@@ -158,7 +162,7 @@ function ItemUpload(props) {
             <Col xs={4}>
               <Image
                 style={{ maxHeight: 40 }}
-                src={file.preview}
+                src={(file.type!='video/mp4')?file.preview:"https://static.thenounproject.com/png/1813969-200.png"}
                 alt={file.name}
               />
             </Col>
