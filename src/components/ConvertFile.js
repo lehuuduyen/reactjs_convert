@@ -100,7 +100,7 @@ function ConvertFile() {
     };
   }
   const items = [
-    getItem("Chuyển đổi TinyPNG", "/convert/chuyen-png-sang-tinypng"),
+    getItem("Nén Ảnh", "/convert/chuyen-png-sang-tinypng"),
     getItem("Chuyển đổi kích thước hình ảnh", "/convert/resize"),
     getItem("Chuyển đổi file", "sub1", "", [
       getItem(
@@ -111,7 +111,7 @@ function ConvertFile() {
           getItem("JPEG", "/convert/chuyen-png-sang-jpeg"),
           getItem("JPG", "/convert/chuyen-png-sang-jpg"),
           getItem("PDF", "/convert/chuyen-png-sang-pdf"),
-          getItem("ICO", "/convert/chuyen-png-sang-ico"),
+        //   getItem("ICO", "/convert/chuyen-png-sang-ico"),
         ],
         "group"
       ),
@@ -122,7 +122,7 @@ function ConvertFile() {
         [
           getItem("PNG", "/convert/chuyen-jpg-sang-png"),
           getItem("PDF", "/convert/chuyen-jpg-sang-pdf"),
-          getItem("ICO", "/convert/chuyen-jpg-sang-ico"),
+        //   getItem("ICO", "/convert/chuyen-jpg-sang-ico"),
         ],
         "group"
       ),
@@ -133,7 +133,7 @@ function ConvertFile() {
         [
           getItem("PNG", "/convert/chuyen-jpeg-sang-png"),
           getItem("PDF", "/convert/chuyen-jpeg-sang-pdf"),
-          getItem("ICO", "/convert/chuyen-jpeg-sang-ico"),
+        //   getItem("ICO", "/convert/chuyen-jpeg-sang-ico"),
         ],
         "group"
       ),
@@ -152,9 +152,11 @@ function ConvertFile() {
     navigator(e.key);
   };
   let meta = "Chuyển đổi " + params[0] + " sang " + params[1];
-
-  if (params[0] === undefined) {
-    meta = "Giải nén Hình ảnh";
+ 
+  if(id === undefined){
+         meta = "Convert 68 - Trang Web Chỉnh Sửa Chuyển Đổi Ảnh Miễn Phí";
+  }else  if (params[0] ===  'PNG' && params[1] === 'TINYPNG') {
+         meta = "Convert 68 - Trang Web Chỉnh Sửa Chuyển Đổi Ảnh Miễn Phí - Nén Ảnh";
   }
   return (
     <Row gutter={20}>
@@ -237,6 +239,8 @@ function ConvertFile() {
                   <ItemUpload
                     file={file}
                     percent={percent}
+                    fileTo={params[1]}
+
                     params={params}
                     onRemove={(file) => remove()}
                   />

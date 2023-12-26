@@ -37,6 +37,7 @@ const getBase64 = (file) =>
 function ItemUpload(props) {
   const { file } = props;
   const [error, setError] = useState("");
+  const [defaultValue, setDefaultValue] = useState('');
   const [optionType, setOptionType] = useState([]);
   const [downloadLink, setDownloadLink] = useState("");
   const [statusUpload, setStatusUpload] = useState(0); // 0: Submit, 1: Loading, 2: Success, 3: Error
@@ -61,9 +62,9 @@ function ItemUpload(props) {
   useEffect( () => {
     let CONVERT_OPTIONS = {
       mp4: ["m3u8"],
-      jpeg: ["png", "gif", "pdf", "ico"],
-      jpg: ["tinyPNG", "png", "gif", "pdf", "ico"],
-      png: ["tinyPNG", "jpeg", "jpg", "pdf"],
+      jpeg: ["png", "gif", "pdf"],
+      jpg: [ "png", "gif", "pdf"],
+      png: ["jpeg", "jpg", "pdf"],
     };
     if (!id || props.params[1] === "TINYPNG") {
       CONVERT_OPTIONS = {
@@ -72,7 +73,6 @@ function ItemUpload(props) {
         png: ["tinyPNG"],
       };
     }
-    
 
     if (file) {
       const dataType = file.type.split("/")[1];
@@ -88,19 +88,21 @@ function ItemUpload(props) {
       }
       
       setOptionType(options);
-      options && setSelectedOption(options[0].value);
+      setSelectedOption(props.fileTo.toLowerCase())
+      // options && setSelectedOption(options[0].value);
     }
   }, [file]);
-
+  
   const onChangeType = (value) => {
     setSelectedOption(value);
   };
 
   const handleDownloadClick = () => {
-    let link = downloadLink.split("/");
 
-    let name = link[link.length - 1].split("?type=")[0];
-    let type = link[link.length - 1].split("?type=")[1];
+    let img = downloadLink.split("&type=")[1];
+
+    let type = img.split("&file_name=")[0];
+    let imageName = img.split("&file_name=")[1];
     const xhr = new XMLHttpRequest();
     xhr.open("GET", downloadLink, true);
     xhr.responseType = "blob";
@@ -109,7 +111,7 @@ function ItemUpload(props) {
       const imageUrl = urlCreator.createObjectURL(this.response);
       const tag = document.createElement("a");
       tag.href = imageUrl;
-      tag.download = name + "." + type;
+      tag.download = imageName + "." + type;
       document.body.appendChild(tag);
       tag.click();
       document.body.removeChild(tag);
@@ -190,6 +192,7 @@ function ItemUpload(props) {
                   <Row gutter={20} align="middle">
                     <Col>
                       <Select
+                        // defaultValue='pdf'
                         value={selectedOption}
                         disabled={downloadLink && fileConverted}
                         onChange={(value) => onChangeType(value)}
