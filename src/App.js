@@ -10,6 +10,9 @@ import Detail from "./components/Detail";
 import Weather from "./components/Weather";
 import News from "./components/News";
 import DetailNews from "./components/DetailNews";
+import ChuyenMuc from "./components/ChuyenMuc";
+import ChuyenMucItem from "./components/ChuyenMucItem";
+import DetailChuyenMuc from "./components/DetailChuyenMuc";
 
 function App() {
   return (
@@ -20,7 +23,7 @@ function App() {
         <Route path="/weather/" element={<Weather />} />
         <Route path="/convert/:id" element={<Home />} />
         <Route path="/blog/:id" element={<Detail />} />
-        <Route path="/news/:id" element={<DetailNews />} />
+        <Route path="/chuyenmuc/:id" element={<DetailChuyenMuc />} />
 
         <Route
           path="/blog"
@@ -29,6 +32,12 @@ function App() {
           }
         ></Route>
         <Route
+          path="/chuyenmuc"
+          element={
+            <ChuyenMuc key={"Chuyenmuc"} pageSize={9} country="in" category="Chuyenmuc" />
+          }
+        ></Route>
+        {/* <Route
           path="/news"
           element={
             <News
@@ -38,7 +47,7 @@ function App() {
               category="Tin mới nhất"
             />
           }
-        ></Route>
+        ></Route> */}
       </Route>
     </ReactRoutes>
   );
