@@ -13,7 +13,7 @@ function Blog(states) {
   const [state, setState] = useState([]);
 
   useEffect(() => {
-    const url = API_BACKEND + `post`;
+    const url = API_BACKEND + `posts-category/blog`;
     setState(states);
     setLoading(true)
     axios(url, {
