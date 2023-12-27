@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "antd": "^5.9.3",
     "axios": "^1.5.1",
+    "browser-image-compression": "^2.0.2",
     "cors": "^2.8.5",
     "firebase-tools": "^10.4.0",
     "fs": "^0.0.1-security",
