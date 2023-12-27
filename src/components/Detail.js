@@ -26,7 +26,7 @@ function Detail() {
       });
   }
   function getPopular() {
-    const urlPopular = API_BACKEND + `post-popular`;
+    const urlPopular = API_BACKEND + `postpopular/blog`;
     axios
       .get(urlPopular)
       .then((res) => {

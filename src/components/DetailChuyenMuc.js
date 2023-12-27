@@ -26,7 +26,7 @@ function DetailChuyenMuc() {
       });
   }
   function getPopular() {
-    const urlPopular = API_BACKEND + `post-popular`;
+    const urlPopular = API_BACKEND + `postpopular/chuyen-muc`;
     axios
       .get(urlPopular)
       .then((res) => {

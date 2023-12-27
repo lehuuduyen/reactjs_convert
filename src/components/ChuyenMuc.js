@@ -14,7 +14,7 @@ function ChuyenMuc(states) {
   const [state, setState] = useState([]);
 
   useEffect(() => {
-    const url = API_BACKEND + `posts-category/chuyenmuc`;
+    const url = API_BACKEND + `postscategory/chuyen-muc`;
     setState(states);
     setLoading(true)
     axios(url, {
