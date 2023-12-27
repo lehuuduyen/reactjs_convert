@@ -174,8 +174,10 @@ function ItemUpload(props) {
         const downloadLink = URL.createObjectURL(compressedFile);
         const json = {}
         json['oldSize'] = Math.round(imageFile.size,1);
-        json['newSize'] = compressedFile.size / 1024;
-        json['percent'] = 100 - (compressedFile.size * 100 / imageFile.size);
+        json['newSize'] = parseFloat(compressedFile.size / 1024).toFixed(2)+' KB';
+        console.log(`Math.round(compressedFile.size / 1024 +' KB',1)`, compressedFile.size);
+        console.log(`Math.round(compressedFile.size / 1024 +' KB',1)`, Math.round(compressedFile.size / 1024 +' KB',1));
+        json['percent'] = parseFloat(100 - (compressedFile.size * 100 / imageFile.size)).toFixed(2) + " %";
         json['name'] = imageFile.name;
         setFileConverted(json);
         setCheckTiny(true)
