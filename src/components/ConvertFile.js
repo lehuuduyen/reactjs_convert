@@ -152,11 +152,14 @@ function ConvertFile() {
     navigator(e.key);
   };
   let meta = "Chuyển đổi " + params[0] + " sang " + params[1];
+  let metaDes = "Chuyển đổi " + params[0] + " sang " + params[1];
  
   if(id === undefined){
          meta = "Convert 68 - Trang Web Chỉnh Sửa Chuyển Đổi Ảnh Miễn Phí";
+         metaDes = "Convert 68 - Trang Web Chỉnh Sửa Chuyển Đổi Ảnh Miễn Phí";
   }else  if (params[0] ===  'PNG' && params[1] === 'TINYPNG') {
          meta = "Convert 68 - Trang Web Chỉnh Sửa Chuyển Đổi Ảnh Miễn Phí - Nén Ảnh";
+         metaDes = "Convert 68 - Trang Web Chỉnh Sửa Chuyển Đổi Ảnh Miễn Phí - Nén Ảnh";
   }
   return (
     <Row gutter={20}>
@@ -168,7 +171,7 @@ function ConvertFile() {
 
         <meta property="og:url" content={window.location.href} />
         <meta property="og:title" content={meta} />
-        <meta property="og:description" content={meta} />
+        <meta property="og:description" content={metaDes} />
       </Helmet>
       {contextHolder}
       <Col xs={24} md={7} lg={5}>
