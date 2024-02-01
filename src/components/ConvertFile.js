@@ -111,7 +111,7 @@ function ConvertFile() {
           getItem("JPEG", "/convert/chuyen-png-sang-jpeg"),
           getItem("JPG", "/convert/chuyen-png-sang-jpg"),
           getItem("PDF", "/convert/chuyen-png-sang-pdf"),
-        //   getItem("ICO", "/convert/chuyen-png-sang-ico"),
+          getItem("ICO", "/convert/chuyen-png-sang-ico"),
         ],
         "group"
       ),
@@ -122,7 +122,7 @@ function ConvertFile() {
         [
           getItem("PNG", "/convert/chuyen-jpg-sang-png"),
           getItem("PDF", "/convert/chuyen-jpg-sang-pdf"),
-        //   getItem("ICO", "/convert/chuyen-jpg-sang-ico"),
+          getItem("ICO", "/convert/chuyen-jpg-sang-ico"),
         ],
         "group"
       ),
@@ -133,7 +133,7 @@ function ConvertFile() {
         [
           getItem("PNG", "/convert/chuyen-jpeg-sang-png"),
           getItem("PDF", "/convert/chuyen-jpeg-sang-pdf"),
-        //   getItem("ICO", "/convert/chuyen-jpeg-sang-ico"),
+          getItem("ICO", "/convert/chuyen-jpeg-sang-ico"),
         ],
         "group"
       ),
@@ -225,7 +225,7 @@ function ConvertFile() {
             <Upload.Dragger
               name="file"
               multiple={true}
-              accept={"image/*"}
+              accept={"image/*,video/*"}
               onChange={(e) => onChange(e)}
               beforeUpload={(file) => {
                 return false;

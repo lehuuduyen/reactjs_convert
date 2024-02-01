@@ -165,7 +165,7 @@ function ItemUpload(props) {
     if (selectedOption == 'tinypng') {
       const imageFile = file.originFileObj;
       const options = {
-        maxSizeMB: 0.5,
+        maxSizeMB: 1,
         useWebWorker: true,
       }
 
