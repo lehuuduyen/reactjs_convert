@@ -76,9 +76,10 @@ function ItemUpload(props) {
   useEffect(() => {
     let CONVERT_OPTIONS = {
       mp4: ["m3u8"],
-      jpeg: ["png", "gif", "pdf"],
-      jpg: ["png", "gif", "pdf"],
-      png: ["jpeg", "jpg", "pdf"],
+      jpeg: ["png", "gif", "pdf", "ico","webp"],
+      jpg: ["png", "gif", "pdf", "ico","webp"],
+      png: ["jpeg", "jpg", "pdf", "ico","webp"],
+      webp: ["jpeg", "jpg", "pdf", "ico","png"],
     };
     if (!id || props.params[1] === "TINYPNG") {
       CONVERT_OPTIONS = {
@@ -135,19 +136,27 @@ function ItemUpload(props) {
       let img = downloadLink.split("&type=")[1];
       let type = img.split("&file_name=")[0];
       let imageName = img.split("&file_name=")[1];
+      
       const xhr = new XMLHttpRequest();
       xhr.open("GET", downloadLink, true);
       xhr.responseType = "blob";
+      
       xhr.onload = function () {
-        const urlCreator = window.URL || window.webkitURL;
-        const imageUrl = urlCreator.createObjectURL(this.response);
-        const tag = document.createElement("a");
-        tag.href = imageUrl;
-        tag.download = imageName + "." + type;
-        document.body.appendChild(tag);
-        tag.click();
-        document.body.removeChild(tag);
+        if (this.status === 200) {
+          const urlCreator = window.URL || window.webkitURL;
+          const imageUrl = urlCreator.createObjectURL(this.response);
+      
+          const tag = document.createElement("a");
+          tag.href = imageUrl;
+          tag.download = imageName + "." + type;
+          document.body.appendChild(tag);
+          tag.click();
+          document.body.removeChild(tag);
+        } else {
+          console.error("Failed to download the image.");
+        }
       };
+      
       xhr.send();
     }
 
@@ -162,10 +171,11 @@ function ItemUpload(props) {
 
   const handleUploadClick = async (file, _this) => {
     setStatusUpload(1);
+
     if (selectedOption == 'tinypng') {
       const imageFile = file.originFileObj;
       const options = {
-        maxSizeMB: 1,
+        initialQuality:0.5,
         useWebWorker: true,
       }
 
@@ -191,6 +201,9 @@ function ItemUpload(props) {
         console.log(error);
       }
 
+    }else if(selectedOption == 'm3u8'){
+      const imageFile = file.originFileObj;
+      
     } else {
       let formData = new FormData();
       formData.append("file", file.originFileObj);

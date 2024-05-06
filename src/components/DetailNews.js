@@ -80,11 +80,11 @@ const meta = data.title
               <div className="single-post">
                 <div className="blog_details">
                   {Object.keys(data).length ? (
-                    <h1
+                    <h2
                       dangerouslySetInnerHTML={{
                         __html: data.title,
                       }}
-                    ></h1>
+                    ></h2>
                   ) : (
                     <>
                       <Skeleton

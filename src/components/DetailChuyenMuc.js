@@ -45,17 +45,16 @@ function DetailChuyenMuc() {
     getDetail();
   }, [navigate]);
 const meta = data.title
+
   return (
     <>
       <Helmet>
         <meta charSet="utf-8" />
         <title>{meta}</title>
-        <meta name="keywords" content={meta} />
         <meta name="description" content={data.content} />
-
         <meta property="og:url" content={window.location.href} />
         <meta property="og:title" content={meta} />
-        <meta property="og:description" content={meta} />
+        <meta property="og:description" content={data.content} />
         <meta property="og:image" content={data.urlToImage} />
       </Helmet>
       <Row>
@@ -92,7 +91,7 @@ const meta = data.title
                 )}
 
                 <div className="blog_details">
-                  <h1>{data.title}</h1>
+                  <h2>{data.title}</h2>
                   <div
                     dangerouslySetInnerHTML={{
                       __html: data.content,

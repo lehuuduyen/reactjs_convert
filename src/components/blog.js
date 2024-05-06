@@ -34,15 +34,17 @@ function Blog(states) {
       });
   }, []);
   // function to handle next and previous.
-  const meta = "Danh sách blog"
+  const meta = "Blog _ convert68"
   //render
+  const keywords = "blog convert68"
+  const des = "chuyên mục blog chia sẻ tin tức tổng hợp của trang convert68 cho mọi người tham khảo"
   return (
     <Row>
       <Helmet>
         <meta charSet="utf-8" />
         <title>{meta}</title>
-        <meta name="keywords" content={meta} />
-        <meta name="description" content={meta} />
+        <meta name="keywords" content={keywords} />
+        <meta name="description" content={des} />
 
         <meta property="og:url" content={window.location.href} />
         <meta property="og:title" content={meta} />
@@ -51,7 +53,7 @@ function Blog(states) {
       <Col className="gutter-row" span={3}></Col>
       <Col className=" gutter-row" span={18}>
         <div className="headline" style={{ textAlign:"center" }}>
-          <h1 style={{ color: "red", fontSize: 35 }}>{state.category}</h1>
+          <h2 style={{ color: "red", fontSize: 35 }}>{state.category}</h2>
         </div>
         {/* spinner */}
         {loading && <Loading />}

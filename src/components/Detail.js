@@ -26,7 +26,7 @@ function Detail() {
       });
   }
   function getPopular() {
-    const urlPopular = API_BACKEND + `postpopular/blog`;
+    const urlPopular = API_BACKEND + `post-popular`;
     axios
       .get(urlPopular)
       .then((res) => {
@@ -46,7 +46,7 @@ function Detail() {
   }, [navigate]);
 const meta = data.title
   return (
-    <>
+    <> 
       <Helmet>
         <meta charSet="utf-8" />
         <title>{meta}</title>
@@ -92,7 +92,7 @@ const meta = data.title
                 )}
 
                 <div className="blog_details">
-                  <h1>{data.title}</h1>
+                  <h2>{data.title}</h2>
                   <div
                     dangerouslySetInnerHTML={{
                       __html: data.content,

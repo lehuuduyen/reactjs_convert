@@ -35,7 +35,8 @@ function ChuyenMuc(states) {
       });
   }, []);
   // function to handle next and previous.
-  const meta = "Danh sách blog"
+  const meta = "Chuyên mục tin tức và hướng dẫn cách sử dụng covnert"
+  const des = "chuyên mục của convert 68 cập nhật thông báo các tin tức trang chuyển đổi hình ảnh và hướng dẫn cách sử dụng chuyển đổi tại đây."
   //render
   return (
     <Row>
@@ -43,7 +44,7 @@ function ChuyenMuc(states) {
         <meta charSet="utf-8" />
         <title>{meta}</title>
         <meta name="keywords" content={meta} />
-        <meta name="description" content={meta} />
+        <meta name="description" content={des} />
 
         <meta property="og:url" content={window.location.href} />
         <meta property="og:title" content={meta} />
@@ -52,7 +53,7 @@ function ChuyenMuc(states) {
       <Col className="gutter-row" span={3}></Col>
       <Col className=" gutter-row" span={18}>
         <div className="headline" style={{ textAlign:"center" }}>
-          <h1 style={{ color: "red", fontSize: 35 }}>{state.category}</h1>
+          <h2 style={{ color: "red", fontSize: 35 }}>{state.category}</h2>
         </div>
         {/* spinner */}
         {loading && <Loading />}

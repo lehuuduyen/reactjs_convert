@@ -28,7 +28,7 @@ function FooterCustom() {
 	};
 
 	return <Footer style={{ textAlign: 'center' }}>
-	TinyPNG ©{new Date().getFullYear()} Created by Conver Free 
+	Convert68 ©{new Date().getFullYear()} Trình Duyệt Chỉnh Sửa Hình Ảnh Miễn Phí
   </Footer>
 }
 
